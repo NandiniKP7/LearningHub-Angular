@@ -1,4 +1,80 @@
-.angular-image {
-  width: 250px;
-  height: auto;
+.topics-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+/* Angular logo + title */
+
+.topics-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.angular-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.topics-header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+
+/* Topic list */
+
+.topics-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
+/* Topic button */
+
+.topic-card {
+  width: 100%;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+
+  background: white;
+
+  text-align: left;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+.topic-card:hover {
+  background: #f7f7f7;
+}
+
+
+/* Sequence number */
+
+.topic-number {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #f0f0f0;
+
+  font-size: 13px;
+  font-weight: 700;
 }

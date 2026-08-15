@@ -1,6 +1,25 @@
-<h1>{{title}}</h1>
-<img class="angular-image" [src]="imageUrl" alt="ngular-image">
-<p>Application Architecture</p>
-<p>String Interpolation</p>
-<p>Components</p>
-<p>DataBinding</p>
+<section class="topics-section">
+
+  <div class="topics-header">
+    <img
+      class="angular-logo"
+      [src]="imageUrl"
+      alt="Angular logo">
+
+    <h1>{{ title }}</h1>
+  </div>
+
+  <div class="topics-grid">
+
+    @for (topic of topics; track topic; let i = $index) {
+      <button class="topic-card">
+        <span class="topic-number">{{ i + 1 }}</span>
+        <span>{{ topic }}</span>
+      </button>
+    } @empty {
+      <p>No Angular topics available.</p>
+    }
+
+  </div>
+
+</section>

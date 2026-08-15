@@ -1,8 +1,28 @@
-<h1>{{title }}</h1>
-<button [disabled]="disabledButton" (click)="angularTopics()">Angular</button>
-<button [disabled]="disabledButton" (click)="typeScriptTopics()">TypeScript</button>
-<button [disabled]="disabledButton" (click)="cSharpTopics()">C#</button>
-<p>{{selectedTopic}}</p>
-<input [(ngModel)]="topic">
-<p>Current Goal:{{topic}}</p>
-<app-angular-topics></app-angular-topics>
+<section class="learning-hub">
+  <h1>{{ title }}</h1>
+
+  <div class="technology-buttons">
+    <button [disabled]="disabledButton" (click)="angularTopics()">Angular</button>
+    <button [disabled]="disabledButton" (click)="typeScriptTopics()">TypeScript</button>
+    <button [disabled]="disabledButton" (click)="cSharpTopics()">C#</button>
+  </div>
+
+  @if(selectedTopic === "AngularBasics") {
+    <app-angular-topics></app-angular-topics>
+  }
+  @else if(selectedTopic === "C#Basics") {
+    <p>Learn C#</p>
+  }
+  @else if(selectedTopic === "TypeScriptBasics") {
+    <p>Learn TypeScript</p>
+  }
+  @else {
+    <p>Please select a topic</p>
+  }
+
+  <div class="learning-goal">
+    <h3>What do you want to learn?</h3>
+    <input [(ngModel)]="topic">
+    <p>Current Goal: {{ topic }}</p>
+  </div>
+</section>

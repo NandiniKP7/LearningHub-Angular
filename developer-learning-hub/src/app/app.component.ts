@@ -14,10 +14,10 @@ export class App {
    disabledButton =false
 
    selectedTopic =""
-    topic="Learn Angular"
+    
     
    angularTopics(){
-    this.selectedTopic="Angular"
+    this.selectedTopic="AngularBasics"
    }
    typeScriptTopics()
    {
@@ -25,6 +25,7 @@ export class App {
    }
    cSharpTopics()
    {
-   this .selectedTopic="C# basics"
+   this.selectedTopic="C#Basics"
    }
+   topic="Learn Angular"
 }
