@@ -1,0 +1,8 @@
+<h1>{{title }}</h1>
+<button [disabled]="disabledButton" (click)="angularTopics()">Angular</button>
+<button [disabled]="disabledButton" (click)="typeScriptTopics()">TypeScript</button>
+<button [disabled]="disabledButton" (click)="cSharpTopics()">C#</button>
+<p>{{selectedTopic}}</p>
+<input [(ngModel)]="topic">
+<p>Current Goal:{{topic}}</p>
+<app-angular-topics></app-angular-topics>
