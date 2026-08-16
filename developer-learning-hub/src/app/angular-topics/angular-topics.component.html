@@ -9,15 +9,26 @@
     <h1>{{ title }}</h1>
   </div>
 
-  <div class="topics-grid">
+  <div class="topics-list">
 
     @for (topic of topics; track topic; let i = $index) {
-      <button class="topic-card">
-        <span class="topic-number">{{ i + 1 }}</span>
-        <span>{{ topic }}</span>
-      </button>
+
+      <div class="topic-row">
+
+        <span class="topic-number">
+          {{ i + 1 }}
+        </span>
+
+        <app-topic-card
+          [topic]="topic">
+        </app-topic-card>
+
+      </div>
+
     } @empty {
+
       <p>No Angular topics available.</p>
+
     }
 
   </div>

@@ -10,54 +10,38 @@
 .topics-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
 .angular-logo {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 }
 
 .topics-header h1 {
   margin: 0;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 
 /* Topic list */
 
-.topics-grid {
+.topics-list {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
 
-/* Topic button */
+/* Number + topic must stay on SAME row */
 
-.topic-card {
-  width: 100%;
-  padding: 10px 14px;
-
+.topic-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-
-  background: white;
-
-  text-align: left;
-  font-size: 15px;
-
-  cursor: pointer;
-}
-
-.topic-card:hover {
-  background: #f7f7f7;
+  gap: 10px;
+  width: 100%;
 }
 
 
@@ -77,4 +61,13 @@
 
   font-size: 13px;
   font-weight: 700;
+}
+
+
+/* Child component takes remaining row space */
+
+app-topic-card {
+  display: block;
+  flex: 1;
+  min-width: 0;
 }

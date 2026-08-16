@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TopicCard } from "../topic-card/topic-card.component";
 
 @Component({
   selector: 'app-angular-topics',
-  imports: [],
+  imports: [TopicCard],
   templateUrl: './angular-topics.component.html',
   styleUrl: './angular-topics.component.css',
 })

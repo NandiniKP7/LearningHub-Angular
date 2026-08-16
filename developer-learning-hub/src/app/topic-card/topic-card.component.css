@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.topic-card {
+  width: 100%;
+  padding: 10px 14px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+
+  background: white;
+
+  text-align: left;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+.topic-card:hover {
+  background: #f7f7f7;
+}
