@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { TopicCard } from "../topic-card/topic-card.component";
+import { TopicNotes } from '../topic-notes/topic-notes.component';
 
 @Component({
   selector: 'app-angular-topics',
-  imports: [TopicCard],
+  imports: [TopicCard, TopicNotes],
   templateUrl: './angular-topics.component.html',
   styleUrl: './angular-topics.component.css',
 })
@@ -56,4 +57,10 @@ export class AngularTopicsComponent {
   "Accessibility Basics",
   "Build & Deployment Basics"
 ];
+selectedTopicNotes="";
+selectedTopic=output<string>();
+onTopicSelected(topic:string)
+{
+  this.selectedTopic.emit(topic);
+}
 }

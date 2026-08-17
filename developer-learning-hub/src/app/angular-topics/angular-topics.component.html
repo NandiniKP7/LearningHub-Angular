@@ -1,36 +1,22 @@
-<section class="topics-section">
 
+<section class="topics-section">
   <div class="topics-header">
-    <img
-      class="angular-logo"
-      [src]="imageUrl"
-      alt="Angular logo">
+    <img class="angular-logo" [src]="imageUrl" alt="Angular logo" />
 
     <h1>{{ title }}</h1>
   </div>
 
   <div class="topics-list">
-
     @for (topic of topics; track topic; let i = $index) {
-
       <div class="topic-row">
-
         <span class="topic-number">
           {{ i + 1 }}
         </span>
 
-        <app-topic-card
-          [topic]="topic">
-        </app-topic-card>
-
+        <app-topic-card [topic]="topic" (selectedTopic)="onTopicSelected($event)"> </app-topic-card>
       </div>
-
     } @empty {
-
       <p>No Angular topics available.</p>
-
     }
-
   </div>
-
 </section>
