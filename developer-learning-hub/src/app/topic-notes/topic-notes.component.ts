@@ -7,5 +7,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './topic-notes.component.css',
 })
 export class TopicNotes {
-  topicNotes =input.required<string>()
+
+  topicNotes = input.required<string>();
 }

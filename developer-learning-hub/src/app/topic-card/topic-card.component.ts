@@ -7,11 +7,15 @@ import { Component, input, output } from '@angular/core';
   styleUrl: './topic-card.component.css',
 })
 export class TopicCard {
-  topic =input.required<string>()
-  selectedTopic=output<string>()
-  onSelectedTopic()
-  {
-    this.selectedTopic.emit(this.topic())
+
+  learningTopic = input.required<string>();
+
+  selectedLearningTopic = output<string>();
+
+
+  onSelectedLearningTopic() {
+    this.selectedLearningTopic.emit(
+      this.learningTopic()
+    );
   }
-  
 }

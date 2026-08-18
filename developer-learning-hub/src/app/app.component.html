@@ -3,43 +3,59 @@
   <h1>{{ title }}</h1>
 
   <div class="technology-buttons">
-    <button [disabled]="disabledButton" (click)="angularTopics()">Angular</button>
-    <button [disabled]="disabledButton" (click)="typeScriptTopics()">TypeScript</button>
-    <button [disabled]="disabledButton" (click)="cSharpTopics()">C#</button>
+
+    <button
+      [disabled]="disabledButton"
+      (click)="angularTopics()">
+      Angular
+    </button>
+
+    <button
+      [disabled]="disabledButton"
+      (click)="typeScriptTopics()">
+      TypeScript
+    </button>
+
+    <button
+      [disabled]="disabledButton"
+      (click)="cSharpTopics()">
+      C#
+    </button>
+
   </div>
 
 
-  @if (selectedTopic === "AngularBasics") {
+  @if (selectedTechnology === "AngularBasics") {
 
-    @if (selectedTopicNotes === "") {
+    @if (selectedLearningTopicNotes === "") {
 
       <app-angular-topics
-        (selectedTopic)="selectedTopicNotes = $event">
+        (selectedLearningTopic)="selectedLearningTopicNotes = $event">
       </app-angular-topics>
 
     }
     @else {
 
       <app-topic-notes
-        [topicNotes]="selectedTopicNotes">
+        [topicNotes]="selectedLearningTopicNotes">
       </app-topic-notes>
 
     }
 
   }
-  @else if (selectedTopic === "C#Basics") {
+  @else if (selectedTechnology === "C#Basics") {
 
     <p>Learn C#</p>
 
   }
-  @else if (selectedTopic === "TypeScriptBasics") {
+  @else if (selectedTechnology === "TypeScriptBasics") {
 
     <p>Learn TypeScript</p>
 
   }
   @else {
 
-    <p>Please select a topic</p>
+    <p>Please select a technology</p>
 
   }
 
@@ -48,9 +64,9 @@
 
     <h3>What do you want to learn?</h3>
 
-    <input [(ngModel)]="topic">
+    <input [(ngModel)]="technology">
 
-    <p>Current Goal: {{ topic }}</p>
+    <p>Current Goal: {{ technology }}</p>
 
   </div>
 

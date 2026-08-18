@@ -4,9 +4,6 @@
   padding: 20px;
 }
 
-
-/* Angular logo + title */
-
 .topics-header {
   display: flex;
   align-items: center;
@@ -25,17 +22,11 @@
   font-size: 28px;
 }
 
-
-/* Topic list */
-
 .topics-list {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-
-
-/* Number + topic must stay on SAME row */
 
 .topic-row {
   display: flex;
@@ -43,9 +34,6 @@
   gap: 10px;
   width: 100%;
 }
-
-
-/* Sequence number */
 
 .topic-number {
   width: 28px;
@@ -62,9 +50,6 @@
   font-size: 13px;
   font-weight: 700;
 }
-
-
-/* Child component takes remaining row space */
 
 app-topic-card {
   display: block;
