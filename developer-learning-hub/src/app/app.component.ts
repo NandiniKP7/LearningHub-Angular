@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -7,42 +7,33 @@ import { TopicNotes } from './topic-notes/topic-notes.component';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    FormsModule,
-    AngularTopicsComponent,
-    TopicNotes
-  ],
+  imports: [RouterOutlet, FormsModule, AngularTopicsComponent, TopicNotes],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class App {
-
-  title = "Developer Learning Hub";
+  title = 'Developer Learning Hub';
 
   disabledButton = false;
 
-  selectedTechnology = "";
+  selectedTechnology = signal(' ');
 
-  selectedLearningTopicNotes = "";
+  selectedLearningTopicNotes = '';
 
-  technology = "Learn Angular";
-
+  technology = 'Learn Angular';
 
   angularTopics() {
-    this.selectedTechnology = "AngularBasics";
+    this.selectedTechnology.set("AngularBasics");
 
     // Clicking Angular again returns to the Angular topic list
-    this.selectedLearningTopicNotes = "";
+    this.selectedLearningTopicNotes = '';
   }
-
 
   typeScriptTopics() {
-    this.selectedTechnology = "TypeScriptBasics";
+    this.selectedTechnology.set('TypeScriptBasics');
   }
 
-
   cSharpTopics() {
-    this.selectedTechnology = "C#Basics";
+    this.selectedTechnology.set('C#Basics');
   }
 }

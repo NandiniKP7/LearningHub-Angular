@@ -25,7 +25,7 @@
   </div>
 
 
-  @if (selectedTechnology === "AngularBasics") {
+  @if (selectedTechnology() === "AngularBasics") {
 
     @if (selectedLearningTopicNotes === "") {
 
@@ -43,12 +43,12 @@
     }
 
   }
-  @else if (selectedTechnology === "C#Basics") {
+  @else if (selectedTechnology() === "C#Basics") {
 
     <p>Learn C#</p>
 
   }
-  @else if (selectedTechnology === "TypeScriptBasics") {
+  @else if (selectedTechnology() === "TypeScriptBasics") {
 
     <p>Learn TypeScript</p>
 
