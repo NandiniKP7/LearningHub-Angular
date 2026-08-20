@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, computed, output, signal } from '@angular/core';
 
 import { TopicCard } from '../topic-card/topic-card.component';
 
@@ -65,8 +65,15 @@ export class AngularTopicsComponent {
 
   selectedLearningTopic = output<string>();
 
+  searchText=signal('')
+  filteredAngularTopics=computed(()=>this.angularLearningTopics.filter((topic)=>{
+    return topic.toLowerCase().includes(this.searchText().toLowerCase())
+  }))
 
   onTopicSelected(topic: string) {
     this.selectedLearningTopic.emit(topic);
+  }
+  onSearch(event:Event){
+    this.searchText.set((event.target as HTMLInputElement).value)
   }
 }

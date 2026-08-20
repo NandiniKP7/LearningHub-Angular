@@ -1,41 +1,28 @@
 <section class="topics-section">
-
   <div class="topics-header">
-
-    <img
-      class="angular-logo"
-      [src]="imageUrl"
-      alt="Angular logo">
-
+    <img class="angular-logo" [src]="imageUrl" alt="Angular logo" />
     <h1>{{ title }}</h1>
-
-  </div>
-
-
+    <input type="text" paceholder="search Angular Topics" [value]="searchText()" (input)="onSearch($event)">
+</div>
   <div class="topics-list">
-
-    @for (angularLearningTopic of angularLearningTopics; track angularLearningTopic; let i = $index) {
-
+    @for (
+      angularLearningTopic of filteredAngularTopics();
+      track angularLearningTopic;
+      let i = $index
+    ) {
       <div class="topic-row">
-
         <span class="topic-number">
           {{ i + 1 }}
         </span>
 
         <app-topic-card
           [learningTopic]="angularLearningTopic"
-          (selectedLearningTopic)="onTopicSelected($event)">
+          (selectedLearningTopic)="onTopicSelected($event)"
+        >
         </app-topic-card>
-
       </div>
-
-    }
-    @empty {
-
+    } @empty {
       <p>No Angular topics available.</p>
-
     }
-
   </div>
-
 </section>
