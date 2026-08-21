@@ -2,8 +2,13 @@
   <div class="topics-header">
     <img class="angular-logo" [src]="imageUrl" alt="Angular logo" />
     <h1>{{ title }}</h1>
-    <input type="text" paceholder="search Angular Topics" [value]="searchText()" (input)="onSearch($event)">
-</div>
+    <input
+      type="text"
+      paceholder="search Angular Topics"
+      [value]="searchText()"
+      (input)="onSearch($event)"
+    />
+  </div>
   <div class="topics-list">
     @for (
       angularLearningTopic of filteredAngularTopics();
@@ -11,11 +16,8 @@
       let i = $index
     ) {
       <div class="topic-row">
-        <span class="topic-number">
-          {{ i + 1 }}
-        </span>
-
         <app-topic-card
+          [learningTopicIndex]="i + 1"
           [learningTopic]="angularLearningTopic"
           (selectedLearningTopic)="onTopicSelected($event)"
         >

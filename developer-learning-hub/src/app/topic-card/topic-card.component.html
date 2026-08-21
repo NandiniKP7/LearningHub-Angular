@@ -1,7 +1,11 @@
-<button
-  class="topic-card"
-  (click)="onSelectedLearningTopic()">
+<button class="topic-card" (click)="onSelectedLearningTopic()">
 
-  <span>{{ learningTopic() }}</span>
+  <span class="topic-number">
+    {{ learningTopicIndex() }}
+  </span>
+
+  <span class="topic-title">
+    {{ learningTopic() }}
+  </span>
 
 </button>

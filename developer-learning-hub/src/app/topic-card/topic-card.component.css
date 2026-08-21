@@ -1,26 +1,41 @@
-:host {
-  display: block;
-  width: 100%;
-}
-
+/* Styles the <button> that contains the topic number + learning topic */
 .topic-card {
-  width: 100%;
-  padding: 10px 14px;
-
-  display: flex;
-  align-items: center;
-
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-
-  background: white;
-
-  text-align: left;
-  font-size: 15px;
-
-  cursor: pointer;
+  width: 100%;                 /* Button uses available width */
+  padding: 10px 14px;         /* Space inside the button */
+  display: flex;               /* Put index and learning topic side-by-side */
+  align-items: center;         /* Vertically align index and learning topic */
+  gap: 12px;                   /* Space between index and learning topic */
+  border: 1px solid #dddddd;   /* Border around the button */
+  border-radius: 8px;          /* Rounded button corners */
+  background: white;           /* Button background */
+  text-align: left;            /* Learning topic text starts from left */
+  font-size: 15px;             /* Button text size */
+  cursor: pointer;             /* Hand cursor when hovering */
 }
 
+
+/* Styles the <span> that displays learningTopicIndex() */
+.topic-number {
+  width: 28px;                 /* Index circle width */
+  height: 28px;                /* Index circle height */
+  display: flex;               /* Enables centering of index */
+  align-items: center;         /* Center index vertically */
+  justify-content: center;     /* Center index horizontally */
+  flex-shrink: 0;              /* Keep index circle at 28px */
+  border-radius: 50%;          /* Make index background circular */
+  background: #f0f0f0;         /* Index circle background */
+  font-size: 13px;             /* Index number size */
+  font-weight: 700;            /* Make index bold */
+}
+
+
+/* Styles the <span> that displays learningTopic() */
+.topic-title {
+  flex: 1;                     /* Learning topic uses remaining button space */
+}
+
+
+/* Styles the <button> when mouse is over it */
 .topic-card:hover {
-  background: #f7f7f7;
+  background: #f7f7f7;         /* Change button background on hover */
 }

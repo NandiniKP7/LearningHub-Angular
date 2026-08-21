@@ -9,6 +9,7 @@ import { Component, input, output } from '@angular/core';
 export class TopicCard {
 
   learningTopic = input.required<string>();
+  learningTopicIndex=input.required<number>();
 
   selectedLearningTopic = output<string>();
 
