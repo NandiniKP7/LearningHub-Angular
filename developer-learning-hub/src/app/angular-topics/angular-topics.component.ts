@@ -1,4 +1,4 @@
-import { Component, computed, output, signal } from '@angular/core';
+import { Component, computed, output, signal,effect } from '@angular/core';
 
 import { TopicCard } from '../topic-card/topic-card.component';
 import angularTopicsData from '../angular-learning-topics.json';
@@ -17,7 +17,7 @@ export class AngularTopicsComponent {
 
   selectedLearningTopic = output<string>();
 
-  searchText = signal('');
+  searchText = signal(localStorage.getItem('angularSearchText') ??'');
 
   filteredAngularTopics = computed(() =>
     this.angularLearningTopics.filter((topic) => {
@@ -31,4 +31,7 @@ export class AngularTopicsComponent {
   onSearch(event: Event) {
     this.searchText.set((event.target as HTMLInputElement).value);
   }
+  saveSearchText=effect(()=>{
+   localStorage.setItem('angularSearchText',this.searchText())
+  })
 }
