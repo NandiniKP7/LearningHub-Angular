@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-topic-card',
@@ -12,11 +12,16 @@ export class TopicCard {
   learningTopicIndex=input.required<number>();
 
   selectedLearningTopic = output<string>();
-
+  isExpandable =signal(false)
 
   onSelectedLearningTopic() {
     this.selectedLearningTopic.emit(
       this.learningTopic()
     );
+  }
+  subTopics=input.required<string[]>();
+  toggleDetails()
+  {
+  this.isExpandable.update(current => !current)
   }
 }

@@ -1,0 +1,736 @@
+{
+  "technology": "Angular",
+  "source": "Angular Learning Roadmap — Detailed Developer Learning Hub Track",
+  "topics": [
+    {
+      "id": 1,
+      "slug": "angular-application-setup-architecture",
+      "title": "Angular Application Setup & Architecture",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "Angular CLI",
+        "ng new / ng serve",
+        "SPA startup flow",
+        "index.html",
+        "main.ts",
+        "bootstrapApplication",
+        "root component",
+        "app.config.ts",
+        "angular.json",
+        "package.json",
+        "src/",
+        "public/",
+        "project structure"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 2,
+      "slug": "string-interpolation",
+      "title": "String Interpolation",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "component properties",
+        "{{ }} syntax",
+        "literal vs property",
+        "case sensitivity",
+        "simple template expressions"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 3,
+      "slug": "components",
+      "title": "Components",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "@Component",
+        "class/template/styles",
+        "selector",
+        "templateUrl/styleUrl",
+        "imports",
+        "standalone components",
+        "ng generate component",
+        "using a child selector",
+        "component responsibility",
+        "local state/template scope"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 4,
+      "slug": "property-binding",
+      "title": "Property Binding",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "[property] syntax",
+        "TypeScript → HTML",
+        "[disabled]",
+        "[src]",
+        "boolean binding",
+        "[class] basics",
+        "[style] basics",
+        "static assets"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 5,
+      "slug": "event-binding",
+      "title": "Event Binding",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "(event) syntax",
+        "(click)",
+        "component methods",
+        "this.property",
+        "changing component state",
+        "$event",
+        "input/keyboard events",
+        "event → method → state"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 6,
+      "slug": "two-way-binding",
+      "title": "Two-Way Binding",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "[(ngModel)]",
+        "FormsModule",
+        "TypeScript ⇄ HTML",
+        "initial values",
+        "user edits update component state",
+        "property vs event vs two-way binding"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 7,
+      "slug": "angular-template-control-flow",
+      "title": "Angular Template Control Flow",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "@if",
+        "@else",
+        "@else if",
+        "@for",
+        "track",
+        "$index/$first/$last/$even/$odd",
+        "@empty",
+        "@switch",
+        "@case",
+        "@default"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 8,
+      "slug": "parent-child-communication-with-input",
+      "title": "Parent → Child Communication with input()",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "parent/child relationship",
+        "input()",
+        "reading signal inputs",
+        "typed/default/required inputs",
+        "aliases",
+        "transforms",
+        "parent binding → child",
+        "input ownership"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 9,
+      "slug": "child-parent-communication-with-output",
+      "title": "Child → Parent Communication with output()",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "output()",
+        "emit()",
+        "parent event listener",
+        "typed payloads",
+        "$event",
+        "input down/events up"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 10,
+      "slug": "writable-signals",
+      "title": "Writable Signals",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "signal()",
+        "WritableSignal",
+        "reading with ()",
+        "set()",
+        "update()",
+        "primitive/array/object signals",
+        "immutable updates",
+        "property vs signal"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 11,
+      "slug": "computed-signals",
+      "title": "Computed Signals",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "computed()",
+        "derived state",
+        "dependency tracking",
+        "read-only computed state",
+        "filtered/totals/count derived state",
+        "signal vs computed"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 12,
+      "slug": "signal-inputs",
+      "title": "Signal Inputs",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "input() as signal",
+        "read with ()",
+        "typed/default/required inputs",
+        "parent binding",
+        "input signal vs writable signal",
+        "computed from inputs"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 13,
+      "slug": "signal-based-state-changes",
+      "title": "Signal-Based State Changes",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "event → signal update",
+        "set vs update",
+        "toggle/counter",
+        "array add/remove",
+        "object updates",
+        "selected state",
+        "minimal state",
+        "derived state"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 14,
+      "slug": "effect",
+      "title": "effect()",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "effect()",
+        "dependency tracking",
+        "side effects",
+        "logging/external synchronization",
+        "cleanup basics",
+        "computed vs effect",
+        "when not to use effect"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 15,
+      "slug": "typescript-models-interfaces-in-angular",
+      "title": "TypeScript Models / Interfaces in Angular",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "interfaces/models",
+        "required/optional/readonly properties",
+        "typed arrays",
+        "typed component data",
+        "typed inputs/services/API responses",
+        "nested models",
+        "separate model files",
+        "avoid any"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 16,
+      "slug": "pipes",
+      "title": "Pipes",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "pipe syntax",
+        "uppercase/lowercase/titlecase",
+        "date",
+        "currency",
+        "percent/decimal",
+        "parameters",
+        "chaining",
+        "standalone pipe imports",
+        "pipe vs method"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 17,
+      "slug": "custom-pipes",
+      "title": "Custom Pipes",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "@Pipe",
+        "PipeTransform",
+        "transform()",
+        "typed input/output",
+        "arguments",
+        "standalone import/use",
+        "pure pipe concept"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 18,
+      "slug": "services",
+      "title": "Services",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "service purpose",
+        "@Injectable",
+        "providedIn root",
+        "service methods",
+        "service state",
+        "component vs service responsibility",
+        "multiple consumers"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 19,
+      "slug": "dependency-injection",
+      "title": "Dependency Injection",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "injector concept",
+        "inject()",
+        "constructor injection",
+        "providers",
+        "root singleton behavior",
+        "service dependencies",
+        "testability"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 20,
+      "slug": "sharing-data-state-with-services",
+      "title": "Sharing Data / State with Services",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "shared state ownership",
+        "signals in services",
+        "private writable/public readonly pattern",
+        "computed service state",
+        "local vs shared state",
+        "avoid duplicated state"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 21,
+      "slug": "routing",
+      "title": "Routing",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "Routes",
+        "provideRouter",
+        "RouterOutlet",
+        "routerLink",
+        "routerLinkActive",
+        "default/redirect/wildcard routes",
+        "child routes",
+        "lazy loading basics"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 22,
+      "slug": "route-parameters-navigation",
+      "title": "Route Parameters & Navigation",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "dynamic :id/:topic",
+        "ActivatedRoute",
+        "paramMap",
+        "query params",
+        "Router",
+        "navigate()",
+        "parameterized links",
+        "invalid parameters"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 23,
+      "slug": "forms-fundamentals",
+      "title": "Forms Fundamentals",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "controls/values/submission",
+        "validation",
+        "valid/invalid",
+        "touched/untouched",
+        "dirty/pristine",
+        "template-driven vs reactive forms"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 24,
+      "slug": "template-driven-forms",
+      "title": "Template-Driven Forms",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "FormsModule",
+        "ngModel",
+        "name",
+        "ngForm",
+        "template references",
+        "ngSubmit",
+        "required/basic validators",
+        "control states",
+        "messages",
+        "disable submit",
+        "reset"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 25,
+      "slug": "reactive-forms",
+      "title": "Reactive Forms",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "ReactiveFormsModule",
+        "FormControl",
+        "FormGroup",
+        "formGroup/formControlName",
+        "FormBuilder",
+        "setValue",
+        "patchValue",
+        "reset",
+        "valueChanges",
+        "nested groups",
+        "FormArray",
+        "dynamic controls"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 26,
+      "slug": "form-validation",
+      "title": "Form Validation",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "Validators.required/minLength/maxLength/min/max/pattern",
+        "email",
+        "multiple validators",
+        "errors",
+        "touched + invalid",
+        "custom validators",
+        "cross-field validation",
+        "async validator concept",
+        "server validation"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 27,
+      "slug": "http-client",
+      "title": "HTTP Client",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "provideHttpClient",
+        "HttpClient injection",
+        "typed responses",
+        "HTTP Observable",
+        "query params",
+        "headers/options",
+        "HTTP in services"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 28,
+      "slug": "calling-rest-apis",
+      "title": "Calling REST APIs",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "GET/GET by id",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "typed request/response",
+        "body/path/query params",
+        "API service layer",
+        "CRUD",
+        "transform API data",
+        "avoid nested subscriptions"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 29,
+      "slug": "loading-error-empty-states",
+      "title": "Loading, Error & Empty States",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "loading/success/empty/error",
+        "messages",
+        "retry concept",
+        "disable while loading",
+        "signals for request state",
+        "model UI states safely"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 30,
+      "slug": "rxjs-fundamentals",
+      "title": "RxJS Fundamentals",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "Observable/Observer",
+        "next/error/complete",
+        "cold observable concept",
+        "of/from",
+        "pipe",
+        "map/filter/tap",
+        "switchMap",
+        "catchError",
+        "finalize",
+        "combineLatest basics"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 31,
+      "slug": "observables-subscriptions",
+      "title": "Observables & Subscriptions",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "subscribe",
+        "subscription lifecycle",
+        "async pipe",
+        "cleanup",
+        "takeUntilDestroyed",
+        "avoid nested subscriptions",
+        "switchMap",
+        "HTTP observables",
+        "Observable vs Promise"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 32,
+      "slug": "signals-and-rxjs-together",
+      "title": "Signals and RxJS Together",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "signals vs Observables",
+        "toSignal",
+        "toObservable",
+        "initial values",
+        "signals + HTTP streams",
+        "avoid unnecessary conversion",
+        "choose simplest reactive primitive"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 33,
+      "slug": "component-lifecycle",
+      "title": "Component Lifecycle",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "constructor",
+        "ngOnInit",
+        "ngOnChanges",
+        "ngAfterViewInit basics",
+        "ngOnDestroy",
+        "cleanup",
+        "hook interfaces",
+        "signals vs lifecycle needs"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 34,
+      "slug": "reusable-component-design",
+      "title": "Reusable Component Design",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "single responsibility",
+        "typed inputs/outputs",
+        "component API",
+        "presentational/container concepts",
+        "ng-content",
+        "composition",
+        "reusable buttons/cards/lists",
+        "avoid over-generalization"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 35,
+      "slug": "angular-application-structure",
+      "title": "Angular Application Structure",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "root responsibility",
+        "feature-based folders",
+        "shared UI",
+        "services/models/routes",
+        "local vs shared state",
+        "UI/business/data separation",
+        "environment config basics",
+        "naming conventions"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 36,
+      "slug": "testing-angular-components-services",
+      "title": "Testing Angular Components & Services",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "testing fundamentals",
+        "TestBed",
+        "fixture/component instance",
+        "DOM queries",
+        "interpolation/binding/event tests",
+        "input/output/control-flow tests",
+        "service tests",
+        "mock dependencies",
+        "HTTP tests",
+        "forms tests"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 37,
+      "slug": "build-a-feature-independently",
+      "title": "Build a Feature Independently",
+      "plannedLearningTime": "2–3 days",
+      "subTopics": [
+        "requirements → design",
+        "choose components/models/state",
+        "inputs/outputs",
+        "routing",
+        "forms/validation",
+        "services/API",
+        "loading/error/empty",
+        "signals/RxJS",
+        "reusability",
+        "tests",
+        "debug/refactor",
+        "explain implementation"
+      ],
+      "category": "core-angular"
+    },
+    {
+      "id": 38,
+      "slug": "linkedsignal",
+      "title": "linkedSignal()",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "linked writable state",
+        "source-dependent reset/recalculation",
+        "linkedSignal vs computed",
+        "when linked state is appropriate"
+      ],
+      "category": "modern-angular"
+    },
+    {
+      "id": 39,
+      "slug": "route-guards-basics",
+      "title": "Route Guards — Basics",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "CanActivateFn",
+        "allow/deny/redirect navigation",
+        "authentication/authorization use-case concept"
+      ],
+      "category": "modern-angular"
+    },
+    {
+      "id": 40,
+      "slug": "http-interceptors-basics",
+      "title": "HTTP Interceptors — Basics",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "functional interceptors",
+        "common headers",
+        "auth token concept",
+        "centralized cross-cutting HTTP behavior"
+      ],
+      "category": "modern-angular"
+    },
+    {
+      "id": 41,
+      "slug": "change-detection-performance-basics",
+      "title": "Change Detection & Performance Basics",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "change detection concept",
+        "signals and reactive updates",
+        "OnPush concept",
+        "avoid expensive template work",
+        "track lists correctly"
+      ],
+      "category": "modern-angular"
+    },
+    {
+      "id": 42,
+      "slug": "deferred-loading",
+      "title": "Deferred Loading",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "@defer",
+        "@placeholder",
+        "@loading",
+        "@error",
+        "basic triggers"
+      ],
+      "category": "modern-angular"
+    },
+    {
+      "id": 43,
+      "slug": "accessibility-basics",
+      "title": "Accessibility Basics",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "semantic HTML",
+        "labels/forms",
+        "keyboard/focus",
+        "alt text",
+        "accessible validation"
+      ],
+      "category": "modern-angular"
+    },
+    {
+      "id": 44,
+      "slug": "build-deployment-basics",
+      "title": "Build & Deployment Basics",
+      "plannedLearningTime": null,
+      "subTopics": [
+        "ng build",
+        "build output",
+        "production build concept",
+        "static assets",
+        "deployment/base path basics"
+      ],
+      "category": "modern-angular"
+    }
+  ]
+}

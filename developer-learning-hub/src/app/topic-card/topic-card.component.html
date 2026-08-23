@@ -1,11 +1,41 @@
-<button class="topic-card" (click)="onSelectedLearningTopic()">
+<div class="topic-card-row">
 
-  <span class="topic-number">
-    {{ learningTopicIndex() }}
-  </span>
+  <button
+    class="topic-card"
+    (click)="onSelectedLearningTopic()">
 
-  <span class="topic-title">
-    {{ learningTopic() }}
-  </span>
+    <span class="topic-number">
+      {{ learningTopicIndex() }}
+    </span>
 
-</button>
+    <span class="topic-title">
+      {{ learningTopic() }}
+    </span>
+
+  </button>
+
+  <button
+    class="details-toggle"
+    (click)="toggleDetails()">
+
+    @if (isExpandable()) {
+      ▼
+    } @else {
+      ▶
+    }
+
+  </button>
+
+</div>
+
+@if (isExpandable()) {
+
+  <div class="topic-details">
+
+    @for (item of subTopics(); track item ; let j=$index) {
+      <p>{{learningTopicIndex()}}.{{j+1}}  {{item}}</p>
+    }
+
+  </div>
+
+}

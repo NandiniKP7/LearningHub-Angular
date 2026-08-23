@@ -1,41 +1,112 @@
-/* Styles the <button> that contains the topic number + learning topic */
+/* Styles the outer <div class="topic-card-row">
+   that contains the topic button + arrow button */
+.topic-card-row {
+  display: flex;               /* Put topic button and arrow button on the same row */
+  align-items: center;         /* Vertically align both buttons */
+  gap: 8px;                    /* Space between topic button and arrow */
+  width: 100%;                 /* Use the full available row width */
+}
+
+
+/* Styles the main <button class="topic-card">
+   that displays learningTopicIndex() + learningTopic() */
 .topic-card {
-  width: 100%;                 /* Button uses available width */
-  padding: 10px 14px;         /* Space inside the button */
-  display: flex;               /* Put index and learning topic side-by-side */
-  align-items: center;         /* Vertically align index and learning topic */
-  gap: 12px;                   /* Space between index and learning topic */
-  border: 1px solid #dddddd;   /* Border around the button */
-  border-radius: 8px;          /* Rounded button corners */
-  background: white;           /* Button background */
-  text-align: left;            /* Learning topic text starts from left */
-  font-size: 15px;             /* Button text size */
+  width: 100%;                 /* Use available width */
+  flex: 1;                     /* Take remaining space beside arrow button */
+
+  padding: 10px 14px;         /* Space inside button */
+
+  display: flex;               /* Put index and topic text side-by-side */
+  align-items: center;         /* Vertically align index and topic text */
+  gap: 12px;                   /* Space between index and topic text */
+
+  border: 1px solid #dddddd;   /* Light border around topic button */
+  border-radius: 8px;          /* Rounded corners */
+
+  background: white;           /* White background */
+
+  text-align: left;            /* Keep topic text aligned left */
+  font-size: 15px;             /* Topic text size */
+
   cursor: pointer;             /* Hand cursor when hovering */
 }
 
 
-/* Styles the <span> that displays learningTopicIndex() */
+/* Styles the <span class="topic-number">
+   that displays learningTopicIndex() */
 .topic-number {
-  width: 28px;                 /* Index circle width */
-  height: 28px;                /* Index circle height */
-  display: flex;               /* Enables centering of index */
-  align-items: center;         /* Center index vertically */
-  justify-content: center;     /* Center index horizontally */
-  flex-shrink: 0;              /* Keep index circle at 28px */
-  border-radius: 50%;          /* Make index background circular */
-  background: #f0f0f0;         /* Index circle background */
-  font-size: 13px;             /* Index number size */
-  font-weight: 700;            /* Make index bold */
+  width: 28px;                 /* Width of number circle */
+  height: 28px;                /* Height of number circle */
+
+  display: flex;               /* Enables centering */
+  align-items: center;         /* Center number vertically */
+  justify-content: center;     /* Center number horizontally */
+
+  flex-shrink: 0;              /* Prevent number circle from shrinking */
+
+  border-radius: 50%;          /* Make background circular */
+  background: #f0f0f0;         /* Light gray circle background */
+
+  font-size: 13px;             /* Number text size */
+  font-weight: 700;            /* Make number bold */
 }
 
 
-/* Styles the <span> that displays learningTopic() */
+/* Styles the <span class="topic-title">
+   that displays learningTopic() */
 .topic-title {
-  flex: 1;                     /* Learning topic uses remaining button space */
+  flex: 1;                     /* Topic text uses remaining space */
 }
 
 
-/* Styles the <button> when mouse is over it */
+/* Styles the <button class="details-toggle">
+   that displays ▶ or ▼ */
+.details-toggle {
+  width: 36px;                 /* Small fixed width for arrow button */
+  height: 36px;                /* Small fixed height */
+
+  flex-shrink: 0;              /* Prevent arrow button from shrinking */
+
+  display: flex;               /* Enables centering */
+  align-items: center;         /* Center arrow vertically */
+  justify-content: center;     /* Center arrow horizontally */
+
+  border: 1px solid #dddddd;   /* Light border */
+  border-radius: 8px;          /* Rounded corners */
+
+  background: white;           /* White background */
+
+  cursor: pointer;             /* Hand cursor on hover */
+}
+
+
+/* Styles the main topic button when mouse is over it */
 .topic-card:hover {
-  background: #f7f7f7;         /* Change button background on hover */
+  background: #f7f7f7;         /* Slight gray background on hover */
+}
+
+
+/* Styles the arrow button when mouse is over it */
+.details-toggle:hover {
+  background: #f7f7f7;         /* Slight gray background on hover */
+}
+
+/* Styles the <div class="topic-details">
+   that contains the expanded subtopics */
+.topic-details {
+  margin: 6px 44px 12px 44px;    /* Space outside + indent subtopics */
+  padding: 10px 14px;             /* Space inside the details area */
+
+  border-left: 3px solid #dddddd; /* Vertical line beside subtopics */
+  background: #fafafa;             /* Light background */
+  border-radius: 6px;              /* Slightly rounded corners */
+}
+
+
+/* Styles each <p> displaying subtopics like 1.1, 1.2, 1.3 */
+.topic-details p {
+  margin: 6px 0;        /* Vertical space between subtopics */
+  font-size: 14px;      /* Smaller than the main topic title */
+  line-height: 1.4;     /* Comfortable line spacing */
+  font-weight: 400;     /* Normal text weight */
 }

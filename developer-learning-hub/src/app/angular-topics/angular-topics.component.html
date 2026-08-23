@@ -4,7 +4,7 @@
     <h1>{{ title }}</h1>
     <input
       type="text"
-      paceholder="search Angular Topics"
+      placeholder="search Angular Topics"
       [value]="searchText()"
       (input)="onSearch($event)"
     />
@@ -18,7 +18,8 @@
       <div class="topic-row">
         <app-topic-card
           [learningTopicIndex]="i + 1"
-          [learningTopic]="angularLearningTopic"
+          [learningTopic]="angularLearningTopic.title"
+          [subTopics]="angularLearningTopic.subTopics"
           (selectedLearningTopic)="onTopicSelected($event)"
         >
         </app-topic-card>
