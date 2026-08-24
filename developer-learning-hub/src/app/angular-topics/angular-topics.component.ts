@@ -1,7 +1,8 @@
-import { Component, computed, output, signal,effect } from '@angular/core';
-
+import { Component, computed, output, signal, effect } from '@angular/core';
 import { TopicCard } from '../topic-card/topic-card.component';
 import angularTopicsData from '../angular-learning-topics.json';
+import { LearningTopic } from '../models/learning-topic.model';
+
 @Component({
   selector: 'app-angular-topics',
   imports: [TopicCard],
@@ -13,11 +14,11 @@ export class AngularTopicsComponent {
 
   imageUrl = '/Angular.png';
 
-  angularLearningTopics = angularTopicsData.topics;
+  angularLearningTopics: LearningTopic[] = angularTopicsData.topics;
 
   selectedLearningTopic = output<string>();
 
-  searchText = signal(localStorage.getItem('angularSearchText') ??'');
+  searchText = signal(localStorage.getItem('angularSearchText') ?? '');
 
   filteredAngularTopics = computed(() =>
     this.angularLearningTopics.filter((topic) => {
@@ -25,13 +26,14 @@ export class AngularTopicsComponent {
     }),
   );
 
-  onTopicSelected(topic: string) {
+  onTopicSelected(topic:string) {
     this.selectedLearningTopic.emit(topic);
+    console.log(topic)
   }
   onSearch(event: Event) {
     this.searchText.set((event.target as HTMLInputElement).value);
   }
-  saveSearchText=effect(()=>{
-   localStorage.setItem('angularSearchText',this.searchText())
-  })
+  saveSearchText = effect(() => {
+    localStorage.setItem('angularSearchText', this.searchText());
+  });
 }
