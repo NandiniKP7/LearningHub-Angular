@@ -1,8 +1,9 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-topic-card',
-  imports: [],
+  imports: [TitleCasePipe],
   templateUrl: './topic-card.component.html',
   styleUrl: './topic-card.component.css',
 })
