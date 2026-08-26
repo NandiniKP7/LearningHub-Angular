@@ -33,7 +33,7 @@
   <div class="topic-details">
 
     @for (item of subTopics(); track item ; let j=$index) {
-      <p>{{learningTopicIndex()}}.{{j+1}}  {{item}}</p>
+      <p>{{item|subTopicLabel:learningTopicIndex():j+1}}</p>
     }
 
   </div>

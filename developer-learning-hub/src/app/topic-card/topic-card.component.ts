@@ -1,9 +1,10 @@
 import { TitleCasePipe } from '@angular/common';
 import { Component, input, output, signal } from '@angular/core';
+import { SubTopicLabelPipe } from '../pipes/sub-topic-label.pipe';
 
 @Component({
   selector: 'app-topic-card',
-  imports: [TitleCasePipe],
+  imports: [TitleCasePipe,SubTopicLabelPipe],
   templateUrl: './topic-card.component.html',
   styleUrl: './topic-card.component.css',
 })
