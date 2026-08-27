@@ -1,8 +1,8 @@
-import { Component, computed, output, signal, effect } from '@angular/core';
+import { Component, computed, output, signal, effect, inject } from '@angular/core';
 import { TopicCard } from '../topic-card/topic-card.component';
 import angularTopicsData from '../angular-learning-topics.json';
 import { LearningTopic } from '../models/learning-topic.model';
-
+import { TopicService } from '../services/topicService.service';
 @Component({
   selector: 'app-angular-topics',
   imports: [TopicCard],
@@ -10,11 +10,12 @@ import { LearningTopic } from '../models/learning-topic.model';
   styleUrl: './angular-topics.component.css',
 })
 export class AngularTopicsComponent {
+  topicService =inject(TopicService)
   title = 'Angular Topics';
 
   imageUrl = '/Angular.png';
 
-  angularLearningTopics: LearningTopic[] = angularTopicsData.topics;
+  angularLearningTopics: LearningTopic[] = this.topicService.getTopics();
 
   selectedLearningTopic = output<string>();
 
