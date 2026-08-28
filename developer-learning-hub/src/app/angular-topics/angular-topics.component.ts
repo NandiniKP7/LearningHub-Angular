@@ -1,6 +1,5 @@
 import { Component, computed, output, signal, effect, inject } from '@angular/core';
 import { TopicCard } from '../topic-card/topic-card.component';
-import angularTopicsData from '../angular-learning-topics.json';
 import { LearningTopic } from '../models/learning-topic.model';
 import { TopicService } from '../services/topicService.service';
 @Component({
