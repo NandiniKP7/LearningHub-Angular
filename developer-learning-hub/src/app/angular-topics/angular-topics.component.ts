@@ -28,6 +28,7 @@ export class AngularTopicsComponent {
 
   onTopicSelected(topic:string) {
     this.selectedLearningTopic.emit(topic);
+    this.topicService.learningTopicUpdated(topic)
     console.log(topic)
   }
   onSearch(event: Event) {

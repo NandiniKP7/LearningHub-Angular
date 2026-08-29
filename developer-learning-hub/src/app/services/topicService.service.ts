@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import angularTopicsData from '../angular-learning-topics.json';
 
 @Injectable({
@@ -9,4 +9,14 @@ export class TopicService {
   {
     return angularTopicsData.topics
   }
+  private learningTopic=signal('')
+
+
+  selectedLearningTopic=this.learningTopic.asReadonly();
+
+  learningTopicUpdated(topic:string)
+  {
+    this.learningTopic.set(topic)
+  }
+  hasSelectedTopic = computed(() => this.selectedLearningTopic() !== '');
 }

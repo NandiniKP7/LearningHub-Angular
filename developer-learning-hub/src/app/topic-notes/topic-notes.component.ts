@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { TopicService } from '../services/topicService.service';
 
 @Component({
   selector: 'app-topic-notes',
@@ -8,5 +9,6 @@ import { Component, input } from '@angular/core';
 })
 export class TopicNotes {
 
-  topicNotes = input.required<string>();
+  topicService=inject(TopicService)
+  
 }

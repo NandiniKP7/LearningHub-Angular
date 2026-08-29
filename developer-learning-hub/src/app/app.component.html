@@ -27,17 +27,15 @@
 
   @if (selectedTechnology() === "AngularBasics") {
 
-    @if (selectedLearningTopicNotes === "") {
+    @if (!topicService.hasSelectedTopic()) {
 
-      <app-angular-topics
-        (selectedLearningTopic)="selectedLearningTopicNotes = $event">
+      <app-angular-topics>
       </app-angular-topics>
 
     }
     @else {
 
-      <app-topic-notes
-        [topicNotes]="selectedLearningTopicNotes">
+      <app-topic-notes>
       </app-topic-notes>
 
     }
