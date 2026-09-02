@@ -1,29 +1,44 @@
 import { Routes } from '@angular/router';
-import { AngularTopicsComponent } from './angular-topics/angular-topics.component';
-import { TypescriptTopicsComponent } from './typescript-topics/typescript-topics.component';
-import { CsharpTopicsComponent } from './csharp-topics/csharp-topics.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
-    {
-    path:'',
-    redirectTo:'angular',
-    pathMatch:'full'
-    },
-    {
-        path:'angular',
-        component :AngularTopicsComponent
-    },
-     {
-        path:'typescript',
-        component :TypescriptTopicsComponent
-    },
-     {
-        path:'csharp',
-        component :CsharpTopicsComponent
-    },
-    {
-        path: '**',
-        component: NotFoundComponent
-    }
+  {
+    path: '',
+    pathMatch: 'full',
+    children:[]
+  },
+  {
+    path: 'angular',
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./angular-topics/angular-topics.component').then((m) => m.AngularTopicsComponent),
+      },
+    ],
+  },
+  {
+    path: 'typescript',
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./typescript-topics/typescript-topics.component').then((m) => m.TypescriptTopicsComponent),
+      },
+    ],
+  },
+  {
+    path: 'csharp',
+    children:[
+        {
+            path:'',
+            loadComponent:()=>
+              import('./csharp-topics/csharp-topics.component').then((m)=>m.CsharpTopicsComponent),
+        }
+    ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];
