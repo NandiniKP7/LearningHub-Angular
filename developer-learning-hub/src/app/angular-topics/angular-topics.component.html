@@ -21,6 +21,7 @@
           [learningTopic]="angularLearningTopic.title"
           [subTopics]="angularLearningTopic.subTopics"
           (selectedLearningTopic)="onTopicSelected($event)"
+          [topicSlug]="angularLearningTopic.slug"
         >
         </app-topic-card>
       </div>

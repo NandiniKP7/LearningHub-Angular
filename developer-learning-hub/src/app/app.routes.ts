@@ -5,7 +5,7 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    children:[]
+    children: [],
   },
   {
     path: 'angular',
@@ -15,6 +15,16 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./angular-topics/angular-topics.component').then((m) => m.AngularTopicsComponent),
       },
+      {
+        path: 'topic/:topic',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./topic-notes/topic-notes.component').then((m) => m.TopicNotes),
+          },
+        ],
+      },
     ],
   },
   {
@@ -23,20 +33,23 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./typescript-topics/typescript-topics.component').then((m) => m.TypescriptTopicsComponent),
+          import('./typescript-topics/typescript-topics.component').then(
+            (m) => m.TypescriptTopicsComponent,
+          ),
       },
     ],
   },
   {
     path: 'csharp',
-    children:[
-        {
-            path:'',
-            loadComponent:()=>
-              import('./csharp-topics/csharp-topics.component').then((m)=>m.CsharpTopicsComponent),
-        }
-    ]
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./csharp-topics/csharp-topics.component').then((m) => m.CsharpTopicsComponent),
+      },
+    ],
   },
+
   {
     path: '**',
     component: NotFoundComponent,
