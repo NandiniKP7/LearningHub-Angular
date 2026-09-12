@@ -1,5 +1,6 @@
 # 3. String Interpolation
 
+
 ## What problem does this solve?
 
 A component's TypeScript class stores data, while its HTML template

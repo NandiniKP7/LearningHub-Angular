@@ -1,6 +1,5 @@
 # 7. Angular Template Control Flow
 
-**Revision date:** September 8, 2026 · **Planned learning time:** 2–3 days
 
 ## What problem does it solve?
 Control flow decides which HTML Angular renders. TypeScript stores the data; the template uses that data to show conditions, repeated items, and fallbacks. These examples are generic; the Learning Hub implementation belongs in the practical revision file.

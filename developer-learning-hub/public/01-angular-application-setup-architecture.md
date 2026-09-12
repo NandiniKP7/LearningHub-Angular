@@ -1,5 +1,6 @@
 # 1. Angular Application Setup & Architecture
 
+
 ## What is Angular?
 
 Angular is a framework for building web applications using TypeScript,

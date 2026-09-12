@@ -1,7 +1,5 @@
 # Topic 16 — Angular Pipes
 
-**Revision date:** September 10, 2026  
-**Planned learning time:** 1–2 days
 
 ## What problem do pipes solve?
 

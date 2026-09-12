@@ -1,7 +1,5 @@
 # Topic 17 — Custom Pipes
 
-**Revision date:** September 10, 2026  
-**Planned learning time:** 1–2 days
 
 ## What problem does a custom pipe solve?
 

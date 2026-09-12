@@ -1,7 +1,5 @@
 # Topic 18 — Angular Services
 
-**Revision date:** September 11, 2026  
-**Planned learning time:** 1–2 days
 
 ## What problem does a service solve?
 

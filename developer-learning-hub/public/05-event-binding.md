@@ -1,5 +1,6 @@
 # 5. Event Binding
 
+
 ## What problem does this solve?
 
 Property binding sends values from TypeScript to HTML. Event binding

@@ -1,6 +1,5 @@
 # 8. Parent → Child Communication with `input()`
 
-**Revision date:** September 8, 2026 · **Planned learning time:** 1–2 days
 
 ## What problem does it solve?
 A shopping page may contain twenty product cards. Instead of twenty separate components, one reusable ProductCard receives different data from its parent.

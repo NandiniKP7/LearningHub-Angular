@@ -1,7 +1,5 @@
 # Topic 15 — TypeScript Models / Interfaces in Angular
 
-**Revision date:** September 10, 2026  
-**Planned learning time:** 1–2 days
 
 ## What problem does an interface solve?
 

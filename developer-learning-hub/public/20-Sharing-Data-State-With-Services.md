@@ -1,7 +1,5 @@
 # Topic 20 — Sharing Data / State with Services
 
-**Revision date:** September 12, 2026  
-**Planned learning time:** 1–2 days
 
 # Why This Example Uses Two Different Components
 

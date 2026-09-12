@@ -1,6 +1,4 @@
 # 13 — Signal-Based State Changes
-**Revision date:** September 9, 2026
-**Planned learning time:** 1–2 days
 
 
 ## Overview — connecting user actions to state

@@ -1,6 +1,5 @@
 # 10 — Writable Signals
-**Revision date:** September 9, 2026
-**Planned learning time:** 2–3 days
+
 
 ## Start here — the big picture
 

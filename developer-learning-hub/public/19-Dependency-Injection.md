@@ -1,7 +1,5 @@
 # Topic 19 — Angular Dependency Injection
 
-**Revision date:** September 11, 2026  
-**Planned learning time:** 1–2 days
 
 ## What problem does Dependency Injection solve?
 

@@ -1,5 +1,6 @@
 # 3. Components
 
+
 ## What problem does this solve?
 
 An Angular application is made of components. A component is one piece

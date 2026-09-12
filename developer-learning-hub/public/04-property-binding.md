@@ -1,5 +1,6 @@
 # 4. Property Binding
 
+
 ## What problem does this solve?
 
 Interpolation displays text. Property binding lets a component's

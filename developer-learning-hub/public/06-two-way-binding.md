@@ -1,5 +1,6 @@
 # 6. Two-Way Binding
 
+
 ## What problem does this solve?
 
 Sometimes an HTML input should display a TypeScript value and also

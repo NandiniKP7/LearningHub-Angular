@@ -1,6 +1,5 @@
 # 9. Child → Parent Communication with `output()`
 
-**Revision date:** September 8, 2026 · **Planned learning time:** 1–2 days
 
 ## What problem does it solve?
 

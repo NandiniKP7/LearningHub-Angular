@@ -1,6 +1,4 @@
 # 11 — Computed Signals
-**Revision date:** September 9, 2026
-**Planned learning time:** 1–2 days
 
 
 ## Overview — why computed state exists

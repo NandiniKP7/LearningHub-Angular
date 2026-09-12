@@ -1,7 +1,5 @@
 # 21. Angular Routing
 
-**Revision date:** Sep 12, 2026  
-**Planned learning time:** 1–2 days
 
 ## Subtopics
 
