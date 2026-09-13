@@ -1,19 +1,24 @@
+
 <div class="topic-card-row">
 
+  <!-- Main topic button -->
   <button
     class="topic-card"
-    (click)="onSelectedLearningTopic()">
+    (click)="openTopic()">
 
+    <!-- Inputs received from parent -->
     <span class="topic-number">
       {{ learningTopicIndex() }}
     </span>
 
     <span class="topic-title">
-      {{ learningTopic() | titlecase }}
+      {{ learningTopic() }}
     </span>
 
   </button>
 
+
+  <!-- Expands or collapses subtopics -->
   <button
     class="details-toggle"
     (click)="toggleDetails()">
@@ -28,12 +33,19 @@
 
 </div>
 
+
+<!-- Show subtopics only when this card is expanded -->
 @if (isExpandable()) {
 
   <div class="topic-details">
 
-    @for (item of subTopics(); track item ; let j=$index) {
-      <p>{{item|subTopicLabel:learningTopicIndex():j+1}}</p>
+    @for (item of subTopics(); track item; let j = $index) {
+
+      <!-- Custom pipe creates labels like 1.1, 1.2 -->
+      <p>
+        {{ item | subTopicLabel: learningTopicIndex(): j + 1 }}
+      </p>
+
     }
 
   </div>

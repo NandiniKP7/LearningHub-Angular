@@ -1,58 +1,57 @@
 .topics-section {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 850px; /* comfortable topic-list width */
+  margin: 0 auto; /* centers topic section */
+  padding: 24px; /* space around topics */
 }
 
 .topics-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  display: flex; /* logo, title and search share a row */
+  align-items: center; /* vertically aligns them */
+  gap: 14px; /* space between header items */
+  margin-bottom: 24px; /* space before topic cards */
+  flex-wrap: wrap; /* allows search to move on small screens */
 }
 
 .angular-logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+  width: 42px; /* logo width */
+  height: 42px; /* logo height */
+  object-fit: contain; /* prevents image distortion */
 }
 
 .topics-header h1 {
-  margin: 0;
-  font-size: 28px;
+  margin: 0; /* removes default heading margin */
+  font-size: 28px; /* topic-page heading */
+  color: var(--text); /* common text color */
+}
+
+.topics-header input {
+  flex: 1; /* search uses remaining row space */
+  min-width: 220px; /* prevents search becoming too narrow */
+  padding: 11px 14px; /* space inside search box */
+  border: 1px solid var(--border); /* subtle border */
+  border-radius: var(--radius-small); /* rounded search field */
+  background: var(--surface); /* white input */
+  outline: none; /* removes browser outline */
+}
+
+.topics-header input:focus {
+  border-color: var(--primary); /* primary focus border */
+  box-shadow: 0 0 0 3px var(--primary-light); /* soft focus effect */
 }
 
 .topics-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: flex; /* creates flexible list container */
+  flex-direction: column; /* cards appear vertically */
+  gap: 10px; /* space between topic cards */
 }
 
 .topic-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.topic-number {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-  background: #f0f0f0;
-
-  font-size: 13px;
-  font-weight: 700;
+  display: flex; /* allows TopicCard to fill row */
+  width: 100%; /* full list width */
 }
 
 app-topic-card {
-  display: block;
-  flex: 1;
-  min-width: 0;
+  display: block; /* component behaves like normal block */
+  flex: 1; /* fills topic row */
+  min-width: 0; /* prevents overflow */
 }

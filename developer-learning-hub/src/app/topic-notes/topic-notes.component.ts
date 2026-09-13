@@ -1,20 +1,28 @@
-import { Component, inject, input } from '@angular/core';
-import { TopicService } from '../services/topicService.service';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MarkdownComponent } from 'ngx-markdown';
+import { TopicService } from '../services/topicService.service';
 
 @Component({
   selector: 'app-topic-notes',
-  imports: [],
+  imports: [MarkdownComponent], // allows <markdown> in HTML
   templateUrl: './topic-notes.component.html',
   styleUrl: './topic-notes.component.css',
 })
+
 export class TopicNotes {
 
-  topicService=inject(TopicService)
-  opicService = inject(TopicService);
+  private route = inject(ActivatedRoute); // reads current URL
+  private topicService = inject(TopicService); // gets topic data from JSON
 
-  route = inject(ActivatedRoute);
+  topicSlug = this.route.snapshot.paramMap.get('topic'); // gets :topic from URL
 
-  topicSlug = this.route.snapshot.paramMap.get('topic');
-  
+  topic = this.topicSlug
+    ? this.topicService.getTopicBySlug(this.topicSlug) // finds matching topic
+    : undefined;
+
+  markdownFile = this.topic?.readmeFile
+    ? `/${this.topic.readmeFile}` // README files are directly inside public/
+    : '';
+
 }

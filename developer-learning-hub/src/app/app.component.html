@@ -1,71 +1,54 @@
+
 <section class="learning-hub">
 
+  <!-- String interpolation: title comes from app.component.ts -->
   <h1>{{ title }}</h1>
 
+
+  <!-- Main navigation buttons -->
   <div class="technology-buttons">
 
+    <!-- Property binding + Angular routing -->
     <button
       [disabled]="disabledButton"
-      (click)="angularTopics()" routerLink="/angular" routerLinkActive="active">
+      routerLink="/angular"
+      routerLinkActive="active">
       Angular
     </button>
 
     <button
       [disabled]="disabledButton"
-      (click)="typeScriptTopics()" routerLink="/typescript" routerLinkActive="active">
+      routerLink="/typescript"
+      routerLinkActive="active">
       TypeScript
     </button>
 
     <button
       [disabled]="disabledButton"
-      (click)="cSharpTopics()" routerLink="/csharp" routerLinkActive="active">
+      routerLink="/csharp"
+      routerLinkActive="active">
       C#
     </button>
 
   </div>
 
-<router-outlet></router-outlet>
-  <!-- @if (selectedTechnology() === "AngularBasics") {
 
-    @if (!topicService.hasSelectedTopic()) {
-
-      <app-angular-topics>
-      </app-angular-topics>
-
-    }
-    @else {
-
-      <app-topic-notes>
-      </app-topic-notes>
-
-    }
-
-  }
-  @else if (selectedTechnology() === "C#Basics") {
-
-    <p>Learn C#</p>
-
-  }
-  @else if (selectedTechnology() === "TypeScriptBasics") {
-
-    <p>Learn TypeScript</p>
-
-  }
-  @else {
-
-    <p>Please select a technology</p>
-
-  } -->
+  <!-- Displays the component that matches the current route -->
+  <router-outlet></router-outlet>
 
 
+  <!-- Simple two-way binding practice -->
   <div class="learning-goal">
 
     <h3>What do you want to learn?</h3>
 
+    <!-- Two-way binding with technology from app.component.ts -->
     <input [(ngModel)]="technology">
 
+    <!-- String interpolation -->
     <p>Current Goal: {{ technology }}</p>
 
   </div>
 
 </section>
+

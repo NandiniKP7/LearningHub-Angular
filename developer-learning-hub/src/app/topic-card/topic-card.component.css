@@ -1,112 +1,96 @@
-/* Styles the outer <div class="topic-card-row">
-   that contains the topic button + arrow button */
 .topic-card-row {
-  display: flex;               /* Put topic button and arrow button on the same row */
-  align-items: center;         /* Vertically align both buttons */
-  gap: 8px;                    /* Space between topic button and arrow */
-  width: 100%;                 /* Use the full available row width */
+  display: flex; /* topic button + arrow stay on same row */
+  align-items: center; /* aligns both buttons */
+  gap: 8px; /* space between topic and arrow */
+  width: 100%; /* uses full row width */
 }
 
-
-/* Styles the main <button class="topic-card">
-   that displays learningTopicIndex() + learningTopic() */
 .topic-card {
-  width: 100%;                 /* Use available width */
-  flex: 1;                     /* Take remaining space beside arrow button */
+  flex: 1; /* topic button takes remaining space */
+  width: 100%; /* fills available width */
+  padding: 12px 15px; /* space inside card */
 
-  padding: 10px 14px;         /* Space inside button */
+  display: flex; /* number and title stay side-by-side */
+  align-items: center; /* vertically aligns number and title */
+  gap: 12px; /* space between number and title */
 
-  display: flex;               /* Put index and topic text side-by-side */
-  align-items: center;         /* Vertically align index and topic text */
-  gap: 12px;                   /* Space between index and topic text */
+  border: 1px solid var(--border); /* common border */
+  border-radius: var(--radius); /* same card radius across site */
+  background: var(--surface); /* white card */
+  color: var(--text); /* common text color */
 
-  border: 1px solid #dddddd;   /* Light border around topic button */
-  border-radius: 8px;          /* Rounded corners */
+  text-align: left; /* topic title stays left aligned */
+  font-size: 15px; /* readable card text */
+  cursor: pointer; /* clickable cursor */
 
-  background: white;           /* White background */
-
-  text-align: left;            /* Keep topic text aligned left */
-  font-size: 15px;             /* Topic text size */
-
-  cursor: pointer;             /* Hand cursor when hovering */
+  transition: 0.2s ease; /* smooth hover effect */
 }
 
-
-/* Styles the <span class="topic-number">
-   that displays learningTopicIndex() */
-.topic-number {
-  width: 28px;                 /* Width of number circle */
-  height: 28px;                /* Height of number circle */
-
-  display: flex;               /* Enables centering */
-  align-items: center;         /* Center number vertically */
-  justify-content: center;     /* Center number horizontally */
-
-  flex-shrink: 0;              /* Prevent number circle from shrinking */
-
-  border-radius: 50%;          /* Make background circular */
-  background: #f0f0f0;         /* Light gray circle background */
-
-  font-size: 13px;             /* Number text size */
-  font-weight: 700;            /* Make number bold */
-}
-
-
-/* Styles the <span class="topic-title">
-   that displays learningTopic() */
-.topic-title {
-  flex: 1;                     /* Topic text uses remaining space */
-}
-
-
-/* Styles the <button class="details-toggle">
-   that displays ▶ or ▼ */
-.details-toggle {
-  width: 36px;                 /* Small fixed width for arrow button */
-  height: 36px;                /* Small fixed height */
-
-  flex-shrink: 0;              /* Prevent arrow button from shrinking */
-
-  display: flex;               /* Enables centering */
-  align-items: center;         /* Center arrow vertically */
-  justify-content: center;     /* Center arrow horizontally */
-
-  border: 1px solid #dddddd;   /* Light border */
-  border-radius: 8px;          /* Rounded corners */
-
-  background: white;           /* White background */
-
-  cursor: pointer;             /* Hand cursor on hover */
-}
-
-
-/* Styles the main topic button when mouse is over it */
 .topic-card:hover {
-  background: #f7f7f7;         /* Slight gray background on hover */
+  border-color: var(--primary); /* highlights selected card */
+  box-shadow: var(--shadow); /* lifts card slightly */
+  transform: translateY(-1px); /* small hover movement */
 }
 
+.topic-number {
+  width: 30px; /* number badge width */
+  height: 30px; /* number badge height */
 
-/* Styles the arrow button when mouse is over it */
+  display: flex; /* allows centering */
+  align-items: center; /* centers vertically */
+  justify-content: center; /* centers horizontally */
+
+  flex-shrink: 0; /* keeps badge size fixed */
+
+  border-radius: 50%; /* makes badge circular */
+  background: var(--primary-light); /* soft indigo badge */
+  color: var(--primary); /* indigo number */
+
+  font-size: 13px; /* number size */
+  font-weight: 700; /* bold number */
+}
+
+.topic-title {
+  flex: 1; /* title takes remaining space */
+  font-weight: 600; /* makes topic easier to scan */
+}
+
+.details-toggle {
+  width: 40px; /* arrow button width */
+  height: 40px; /* arrow button height */
+
+  flex-shrink: 0; /* keeps fixed size */
+
+  display: flex; /* allows arrow centering */
+  align-items: center; /* centers vertically */
+  justify-content: center; /* centers horizontally */
+
+  border: 1px solid var(--border); /* same border system */
+  border-radius: var(--radius-small); /* rounded button */
+  background: var(--surface); /* white background */
+  color: var(--primary); /* indigo arrow */
+
+  cursor: pointer; /* clickable cursor */
+  transition: 0.2s ease; /* smooth hover */
+}
+
 .details-toggle:hover {
-  background: #f7f7f7;         /* Slight gray background on hover */
+  background: var(--primary-light); /* soft primary hover */
+  border-color: var(--primary); /* primary hover border */
 }
 
-/* Styles the <div class="topic-details">
-   that contains the expanded subtopics */
 .topic-details {
-  margin: 6px 44px 12px 44px;    /* Space outside + indent subtopics */
-  padding: 10px 14px;             /* Space inside the details area */
+  margin: 8px 48px 14px; /* indents subtopics */
+  padding: 12px 16px; /* space inside details area */
 
-  border-left: 3px solid #dddddd; /* Vertical line beside subtopics */
-  background: #fafafa;             /* Light background */
-  border-radius: 6px;              /* Slightly rounded corners */
+  border-left: 4px solid var(--primary); /* connects details visually to brand */
+  background: var(--primary-light); /* soft highlighted background */
+  border-radius: var(--radius-small); /* rounded subtopic panel */
 }
 
-
-/* Styles each <p> displaying subtopics like 1.1, 1.2, 1.3 */
 .topic-details p {
-  margin: 6px 0;        /* Vertical space between subtopics */
-  font-size: 14px;      /* Smaller than the main topic title */
-  line-height: 1.4;     /* Comfortable line spacing */
-  font-weight: 400;     /* Normal text weight */
+  margin: 7px 0; /* spacing between subtopics */
+  color: var(--text-muted); /* softer supporting text */
+  font-size: 14px; /* slightly smaller than topic title */
+  line-height: 1.5; /* readable spacing */
 }

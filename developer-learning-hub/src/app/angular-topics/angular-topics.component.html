@@ -1,32 +1,55 @@
+
 <section class="topics-section">
+
   <div class="topics-header">
-    <img class="angular-logo" [src]="imageUrl" alt="Angular logo" />
+
+    <!-- Property binding: imageUrl comes from component.ts -->
+    <img
+      class="angular-logo"
+      [src]="imageUrl"
+      alt="Angular logo"
+    />
+
+    <!-- String interpolation -->
     <h1>{{ title }}</h1>
+
+    <!-- Signal value + input event -->
     <input
       type="text"
-      placeholder="search Angular Topics"
+      placeholder="Search Angular Topics"
       [value]="searchText()"
       (input)="onSearch($event)"
     />
+
   </div>
+
+
   <div class="topics-list">
+
+    <!-- Loop through filtered topics -->
     @for (
       angularLearningTopic of filteredAngularTopics();
-      track angularLearningTopic;
-      let i = $index
+      track angularLearningTopic.id
     ) {
+
       <div class="topic-row">
+
+        <!-- Parent AngularTopicsComponent -> Child TopicCard -->
         <app-topic-card
-          [learningTopicIndex]="i + 1"
+          [learningTopicIndex]="angularLearningTopic.id"
           [learningTopic]="angularLearningTopic.title"
           [subTopics]="angularLearningTopic.subTopics"
-          (selectedLearningTopic)="onTopicSelected($event)"
-          [topicSlug]="angularLearningTopic.slug"
-        >
+          [topicSlug]="angularLearningTopic.slug">
         </app-topic-card>
+
       </div>
+
     } @empty {
+
       <p>No Angular topics available.</p>
+
     }
+
   </div>
+
 </section>

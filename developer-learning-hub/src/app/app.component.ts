@@ -1,48 +1,28 @@
-import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core'; // Component is needed because this file defines an Angular component.
 
-import { AngularTopicsComponent } from './angular-topics/angular-topics.component';
-import { TopicNotes } from './topic-notes/topic-notes.component';
-import { TopicService } from './services/topicService.service';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+
+import { FormsModule } from '@angular/forms'; // FormsModule is needed because our HTML uses [(ngModel)].
 
 @Component({
-  selector: 'app-root',
-  imports: [
-    RouterLink,
-    RouterLinkActive,
-    RouterOutlet,
-    FormsModule,
-    AngularTopicsComponent,
-    TopicNotes
+  
+  selector: 'app-root',// HTML name of our root component.
+  imports: [  // Angular features used inside app.component.html.
+    RouterLink, // used for navigation
+    RouterLinkActive, // used to show the active route using CSS
+    RouterOutlet, // displays the component for the current route
+    FormsModule, // needed for [(ngModel)]
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  templateUrl: './app.component.html',// HTML file connected to this component.
+  styleUrl: './app.component.css',// CSS file connected to this component.
 })
 export class App {
-
-  topicService = inject(TopicService);
-
+  // Variable that holds the main page title.
   title = 'Developer Learning Hub';
 
+  // Boolean value that controls whether the technology buttons are disabled.
   disabledButton = false;
-
-  selectedTechnology = signal(' ');
-
+  
+  // Default value shown in the learning-goal input.
   technology = 'Learn Angular';
-
-  angularTopics() {
-    this.selectedTechnology.set('AngularBasics');
-
-    // Return to the Angular topic list.
-    this.topicService.clearSelectedLearningTopic();
-  }
-
-  typeScriptTopics() {
-    this.selectedTechnology.set('TypeScriptBasics');
-  }
-
-  cSharpTopics() {
-    this.selectedTechnology.set('C#Basics');
-  }
 }

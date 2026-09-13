@@ -1,2 +1,9 @@
-<p>topic-notes works!</p>
-<h1>{{this.topicService.selectedLearningTopic()}}</h1>
+<section class="topic-notes">
+
+  <!-- Loads and renders the Markdown file -->
+  <markdown
+    class="markdown-body"
+    [src]="markdownFile">
+  </markdown>
+
+</section>

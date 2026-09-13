@@ -1,1 +1,112 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'github-markdown-css/github-markdown.css';
+
+:root {
+  --primary: #4f46e5; /* main Learning Hub color */
+  --primary-hover: #4338ca; /* darker primary for hover */
+  --primary-light: #eef2ff; /* soft primary background */
+
+  --page-background: #f5f7fb; /* whole website background */
+  --surface: #ffffff; /* cards and reading areas */
+
+  --text: #1f2937; /* main text */
+  --text-muted: #6b7280; /* secondary text */
+
+  --border: #e5e7eb; /* common border color */
+
+  --radius-small: 8px; /* small controls */
+  --radius: 12px; /* normal cards */
+
+  --shadow: 0 5px 18px rgba(0, 0, 0, 0.06); /* common card shadow */
+}
+
+* {
+  box-sizing: border-box; /* keeps padding inside element width */
+}
+
+body {
+  margin: 0; /* removes browser default margin */
+  background: var(--page-background); /* site background */
+  color: var(--text); /* default text color */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; /* readable system font */
+}
+
+button,
+input {
+  font: inherit; /* buttons and inputs use same font as site */
+}
+.markdown-body {
+  color: var(--text); /* same main site text */
+  font-size: 17px; /* comfortable lesson text */
+  line-height: 1.75; /* reading-friendly line spacing */
+}
+
+.markdown-body h1 {
+  color: var(--text); /* lesson title stays professional */
+  font-size: 34px; /* main lesson heading */
+  padding-bottom: 14px; /* space before divider */
+  border-bottom: 3px solid var(--primary); /* Learning Hub accent */
+}
+
+.markdown-body h2 {
+  color: var(--primary); /* identifies major lesson sections */
+  margin-top: 42px; /* separates sections clearly */
+}
+
+.markdown-body h3 {
+  color: var(--text); /* keeps subsections calm */
+  margin-top: 30px; /* subsection spacing */
+}
+
+.markdown-body p {
+  margin-bottom: 18px; /* comfortable paragraph spacing */
+}
+
+.markdown-body li {
+  margin-bottom: 7px; /* gives lists breathing room */
+}
+
+.markdown-body a {
+  color: var(--primary); /* site-wide link color */
+}
+
+.markdown-body :not(pre) > code {
+  padding: 2px 6px; /* inline code spacing */
+  background: var(--primary-light); /* soft code highlight */
+  color: var(--primary-hover); /* code accent */
+  border-radius: 5px; /* code badge shape */
+}
+
+.markdown-body pre {
+  margin: 22px 0; /* separates code from text */
+  padding: 18px 20px; /* space inside code blocks */
+  background: #f8fafc; /* subtle code background */
+  border: 1px solid var(--border); /* code box border */
+  border-left: 4px solid var(--primary); /* site accent */
+  border-radius: var(--radius-small); /* rounded code box */
+  overflow-x: auto; /* handles long code */
+}
+
+.markdown-body blockquote {
+  margin: 24px 0; /* separates notes */
+  padding: 14px 18px; /* space inside note */
+  background: var(--primary-light); /* soft highlighted note */
+  border-left: 4px solid var(--primary); /* note accent */
+  border-radius: 0 var(--radius-small) var(--radius-small) 0; /* soft right corners */
+  color: var(--text-muted); /* softer note text */
+}
+
+.markdown-body table {
+  width: 100%; /* table fills lesson width */
+  margin: 24px 0; /* separates table from text */
+}
+
+.markdown-body th {
+  background: var(--primary-light); /* table headers match site */
+  color: var(--primary-hover); /* stronger header text */
+}
+
+.markdown-body hr {
+  margin: 38px 0; /* separates major content sections */
+  border: 0; /* removes default border */
+  border-top: 1px solid var(--border); /* subtle separator */
+}

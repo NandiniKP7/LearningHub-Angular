@@ -1,41 +1,42 @@
-import { TitleCasePipe } from '@angular/common';
-import { Component, inject, input, output, signal } from '@angular/core';
-import { SubTopicLabelPipe } from '../pipes/sub-topic-label.pipe';
+
+import { Component, inject, input, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubTopicLabelPipe } from '../pipes/sub-topic-label.pipe';
 
 @Component({
   selector: 'app-topic-card',
-  imports: [TitleCasePipe,SubTopicLabelPipe],
+  imports: [SubTopicLabelPipe], // Used in HTML for labels like 1.1, 1.2
   templateUrl: './topic-card.component.html',
   styleUrl: './topic-card.component.css',
 })
+
 export class TopicCard {
 
+  // Inputs received from parent AngularTopicsComponent
+  learningTopicIndex = input.required<number>();
   learningTopic = input.required<string>();
-  learningTopicIndex=input.required<number>();
-   router = inject(Router);
-topicSlug=input.required<string>()
+  subTopics = input.required<string[]>();
+  topicSlug = input.required<string>();
 
-  selectedLearningTopic = output<string>();
-  isExpandable =signal(false)
+  // Local state: controls expand/collapse of subtopics
+  isExpandable = signal(false);
 
-onSelectedLearningTopic() {
-  this.selectedLearningTopic.emit(
-    this.learningTopic()
-  );
+  // Used to navigate to the selected topic page
+  private router = inject(Router);
 
-  this.router.navigate([
-    '/angular',
-    'topic',
-    this.topicSlug()
-  ]);
-}
-  subTopics=input.required<string[]>();
-  toggleDetails()
-  {
-  this.isExpandable.update(current => !current)
+  // Opens /angular/topic/<slug>
+  openTopic() {
+    this.router.navigate([
+      '/angular',
+      'topic',
+      this.topicSlug()
+    ]);
   }
-  
- 
-  
+
+  // Switches subtopics between hidden and visible
+  toggleDetails() {
+    this.isExpandable.update(current => !current);
+  }
+
 }
+

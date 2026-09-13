@@ -1,23 +1,19 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import angularTopicsData from '../angular-learning-topics.json';
+import { LearningTopic } from '../models/learning-topic.model';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class TopicService {
-  getTopics() {
-    return angularTopicsData.topics;
-  }
-  private learningTopic = signal('');
 
-  selectedLearningTopic = this.learningTopic.asReadonly();
-
-  learningTopicUpdated(topic: string) {
-    this.learningTopic.set(topic);
+  getTopics(): LearningTopic[] {
+    return angularTopicsData.topics; // returns all Angular topics from JSON
   }
 
-  clearSelectedLearningTopic() {
-    this.learningTopic.set('');
+  getTopicBySlug(slug: string): LearningTopic | undefined {
+    return angularTopicsData.topics.find(topic => topic.slug === slug); // finds one topic using URL slug
   }
-  hasSelectedTopic = computed(() => this.selectedLearningTopic() !== '');
+
 }

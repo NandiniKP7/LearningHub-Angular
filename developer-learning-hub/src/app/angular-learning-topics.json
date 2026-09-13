@@ -22,24 +22,11 @@
         "public/",
         "project structure"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "01-angular-application-setup-architecture.md"
     },
     {
       "id": 2,
-      "slug": "string-interpolation",
-      "title": "String Interpolation",
-      "plannedLearningTime": "1–2 days",
-      "subTopics": [
-        "component properties",
-        "{{ }} syntax",
-        "literal vs property",
-        "case sensitivity",
-        "simple template expressions"
-      ],
-      "category": "core-angular"
-    },
-    {
-      "id": 3,
       "slug": "components",
       "title": "Components",
       "plannedLearningTime": "1–2 days",
@@ -55,7 +42,23 @@
         "component responsibility",
         "local state/template scope"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "02-components.md"
+    },
+    {
+      "id": 3,
+      "slug": "string-interpolation",
+      "title": "String Interpolation",
+      "plannedLearningTime": "1–2 days",
+      "subTopics": [
+        "component properties",
+        "{{ }} syntax",
+        "literal vs property",
+        "case sensitivity",
+        "simple template expressions"
+      ],
+      "category": "core-angular",
+      "readmeFile": "03-string-interpolation.md"
     },
     {
       "id": 4,
@@ -72,7 +75,8 @@
         "[style] basics",
         "static assets"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "04-property-binding.md"
     },
     {
       "id": 5,
@@ -89,7 +93,8 @@
         "input/keyboard events",
         "event → method → state"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "05-event-binding.md"
     },
     {
       "id": 6,
@@ -104,7 +109,8 @@
         "user edits update component state",
         "property vs event vs two-way binding"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "06-two-way-binding.md"
     },
     {
       "id": 7,
@@ -123,7 +129,8 @@
         "@case",
         "@default"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "07-Template-Control-Flow.md"
     },
     {
       "id": 8,
@@ -140,7 +147,8 @@
         "parent binding → child",
         "input ownership"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "08-Parent-to-Child-input.md"
     },
     {
       "id": 9,
@@ -155,7 +163,8 @@
         "$event",
         "input down/events up"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "09-Child-to-Parent-output.md"
     },
     {
       "id": 10,
@@ -172,7 +181,8 @@
         "immutable updates",
         "property vs signal"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "10-Writable-Signals.md"
     },
     {
       "id": 11,
@@ -187,7 +197,8 @@
         "filtered/totals/count derived state",
         "signal vs computed"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "11-Computed-Signals.md"
     },
     {
       "id": 12,
@@ -202,7 +213,8 @@
         "input signal vs writable signal",
         "computed from inputs"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "12-Signal-Inputs.md"
     },
     {
       "id": 13,
@@ -219,7 +231,8 @@
         "minimal state",
         "derived state"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "13-Signal-Based-State-Changes.md"
     },
     {
       "id": 14,
@@ -235,7 +248,8 @@
         "computed vs effect",
         "when not to use effect"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "14-Effect.md"
     },
     {
       "id": 15,
@@ -252,7 +266,8 @@
         "separate model files",
         "avoid any"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "15-TypeScript-Models-Interfaces.md"
     },
     {
       "id": 16,
@@ -270,7 +285,8 @@
         "standalone pipe imports",
         "pipe vs method"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "16-Angular-Pipes.md"
     },
     {
       "id": 17,
@@ -286,7 +302,8 @@
         "standalone import/use",
         "pure pipe concept"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "17-Custom-Pipes.md"
     },
     {
       "id": 18,
@@ -302,7 +319,8 @@
         "component vs service responsibility",
         "multiple consumers"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "18-Services.md"
     },
     {
       "id": 19,
@@ -318,7 +336,8 @@
         "service dependencies",
         "testability"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "19-Dependency-Injection.md"
     },
     {
       "id": 20,
@@ -333,7 +352,8 @@
         "local vs shared state",
         "avoid duplicated state"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "20-Sharing-Data-State-With-Services.md"
     },
     {
       "id": 21,
@@ -350,7 +370,8 @@
         "child routes",
         "lazy loading basics"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "21-Angular-Routing.md"
     },
     {
       "id": 22,
@@ -367,7 +388,8 @@
         "parameterized links",
         "invalid parameters"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": "22-Route Parameters & Navigation.md"
     },
     {
       "id": 23,
@@ -382,7 +404,8 @@
         "dirty/pristine",
         "template-driven vs reactive forms"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 24,
@@ -402,7 +425,8 @@
         "disable submit",
         "reset"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 25,
@@ -423,7 +447,8 @@
         "FormArray",
         "dynamic controls"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 26,
@@ -441,7 +466,8 @@
         "async validator concept",
         "server validation"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 27,
@@ -457,7 +483,8 @@
         "headers/options",
         "HTTP in services"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 28,
@@ -477,7 +504,8 @@
         "transform API data",
         "avoid nested subscriptions"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 29,
@@ -492,7 +520,8 @@
         "signals for request state",
         "model UI states safely"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 30,
@@ -511,7 +540,8 @@
         "finalize",
         "combineLatest basics"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 31,
@@ -529,7 +559,8 @@
         "HTTP observables",
         "Observable vs Promise"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 32,
@@ -545,7 +576,8 @@
         "avoid unnecessary conversion",
         "choose simplest reactive primitive"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 33,
@@ -562,7 +594,8 @@
         "hook interfaces",
         "signals vs lifecycle needs"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 34,
@@ -579,7 +612,8 @@
         "reusable buttons/cards/lists",
         "avoid over-generalization"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 35,
@@ -596,7 +630,8 @@
         "environment config basics",
         "naming conventions"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 36,
@@ -615,7 +650,8 @@
         "HTTP tests",
         "forms tests"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 37,
@@ -636,7 +672,8 @@
         "debug/refactor",
         "explain implementation"
       ],
-      "category": "core-angular"
+      "category": "core-angular",
+      "readmeFile": null
     },
     {
       "id": 38,
@@ -649,7 +686,8 @@
         "linkedSignal vs computed",
         "when linked state is appropriate"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     },
     {
       "id": 39,
@@ -661,7 +699,8 @@
         "allow/deny/redirect navigation",
         "authentication/authorization use-case concept"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     },
     {
       "id": 40,
@@ -674,7 +713,8 @@
         "auth token concept",
         "centralized cross-cutting HTTP behavior"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     },
     {
       "id": 41,
@@ -688,7 +728,8 @@
         "avoid expensive template work",
         "track lists correctly"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     },
     {
       "id": 42,
@@ -702,7 +743,8 @@
         "@error",
         "basic triggers"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     },
     {
       "id": 43,
@@ -716,7 +758,8 @@
         "alt text",
         "accessible validation"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     },
     {
       "id": 44,
@@ -730,7 +773,8 @@
         "static assets",
         "deployment/base path basics"
       ],
-      "category": "modern-angular"
+      "category": "modern-angular",
+      "readmeFile": null
     }
   ]
 }

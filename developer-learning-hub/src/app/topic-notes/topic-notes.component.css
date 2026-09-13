@@ -1,10 +1,21 @@
 .topic-notes {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 24px;
+  max-width: 860px; /* comfortable lesson width */
+  margin: 32px auto; /* centers lesson */
+  padding: 46px 52px; /* comfortable reading space */
+
+  background: var(--surface); /* same white surface as cards */
+  border: 1px solid var(--border); /* same site border */
+  border-radius: var(--radius); /* same site card radius */
+  box-shadow: var(--shadow); /* same site shadow */
 }
 
-.topic-notes h1 {
-  margin-top: 0;
-  margin-bottom: 20px;
+markdown {
+  display: block; /* lets README use full reading width */
+}
+
+@media (max-width: 767px) {
+  .topic-notes {
+    margin: 16px auto; /* smaller outside spacing */
+    padding: 26px 20px; /* smaller mobile padding */
+  }
 }
