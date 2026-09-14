@@ -22,7 +22,7 @@ export class TopicNotes {
     : undefined;
 
   markdownFile = this.topic?.readmeFile
-    ? `/${this.topic.readmeFile}` // README files are directly inside public/
+    ? `/assets/angular-notes/${this.topic.readmeFile}` // README files are directly inside public/
     : '';
 
 }

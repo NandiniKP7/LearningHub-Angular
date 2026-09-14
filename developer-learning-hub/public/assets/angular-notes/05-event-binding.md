@@ -10,122 +10,168 @@
 - input / keyboard events
 - event → method → state
 
-## What it solves
+## What problem does this solve?
 
-Event binding lets Angular respond to something the user does.
+Property binding sends values from TypeScript to HTML. Event binding
+lets Angular respond when a user clicks, types, or presses a key.
 
-```text
-User / HTML → TypeScript
-```
+**Direction:** User/HTML → TypeScript
 
-## Where do we use this?
+## 1. A real-world example
 
-| File | Job |
-|---|---|
-| Component `.html` | Listen for the event |
-| Component `.ts` | Method that handles the event |
+Imagine a shopping cart. Clicking "Add to cart" should increase the cart
+count. The click happens in HTML, but the count is stored and changed in
+TypeScript.
 
-## Basic syntax
+## 2. Basic syntax
 
-```html
+``` html
 (event)="method()"
 ```
 
-Example:
+Parentheses tell Angular to listen for the named event. The expression
+on the right runs when the event occurs.
 
-```ts
-export class CounterComponent {
-  count = 0;
+## 3. Define a property and method in TypeScript
 
-  increment(): void {
-    this.count++;
+``` ts
+export class AppComponent {
+  cartCount: number = 0; // Initial number of items.
+
+  addToCart(): void {
+    this.cartCount = this.cartCount + 1;
   }
 }
 ```
 
-```html
-<button (click)="increment()">Add</button>
-<p>Count: {{ count }}</p>
+`addToCart()` is a method. `void` means it does not return a value.
+`this.cartCount` refers to the property belonging to the current
+component.
+
+## 4. Connect the click in HTML
+
+``` html
+<button (click)="addToCart()">Add to cart</button>
+<p>Items: {{ cartCount }}</p>
 ```
 
-Flow:
-
-```text
-click
- ↓
-increment()
- ↓
-count changes
- ↓
-template displays new value
+``` text
+User clicks button
+       ↓
+(click) runs addToCart()
+       ↓
+this.cartCount changes
+       ↓
+Interpolation displays the new count
 ```
 
-## What does `this.` mean?
+The paragraph already exists when the page loads. The event changes its
+displayed value; it does not create the paragraph.
 
-Inside TypeScript:
+## 5. What does `this.` mean?
 
-```ts
-this.count++;
+``` ts
+cartCount: number = 0;
+
+addToCart(): void {
+  this.cartCount = 1;
+}
 ```
 
-`this` means the current component instance.
+`this` refers to the current component instance. We are changing the
+existing property, not declaring a new variable.
 
-In the HTML template, use:
+Inside the component's TypeScript method, use `this.cartCount`. In the
+HTML template, use `cartCount` without `this`.
 
-```html
-{{ count }}
+## 6. Common browser events
+
+  Event         When it occurs
+  ------------- -----------------------------------------------------
+  `(click)`     An element is clicked.
+  `(input)`     The value of an input changes as the user edits it.
+  `(change)`    A change is committed, depending on the control.
+  `(keyup)`     A keyboard key is released.
+  `(keydown)`   A keyboard key is pressed.
+  `(submit)`    A form is submitted.
+
+Example:
+
+``` html
+<button (click)="addToCart()">Add</button>
 ```
 
-not `this.count`.
+## 7. What is `$event`?
 
-## `$event`
+`$event` is Angular's special template variable containing information
+about the event that occurred.
 
-Use `$event` when the method needs information about the browser event.
-
-```html
+``` html
 <input (input)="onInput($event)">
 ```
 
-```ts
+The method receives the browser event:
+
+``` ts
+onInput(event: Event): void {
+  console.log(event);
+}
+```
+
+The parameter name `event` is our choice. `$event` is the special name
+used in the template.
+
+### Reading an input's value
+
+A browser event has a target, but TypeScript only knows that it is a
+general `EventTarget`. We can assert that the target is an HTML input:
+
+``` ts
 onInput(event: Event): void {
   const input = event.target as HTMLInputElement;
   console.log(input.value);
 }
 ```
 
-`$event` is Angular's template variable for the event that occurred.
+-   `event.target` is the element that produced the event.
+-   `as HTMLInputElement` tells TypeScript which element type we expect.
+-   `.value` reads the current text.
 
-## Common events
+This is useful when a requirement needs the actual input value. A
+simpler click handler does not need `$event`.
 
-```text
-(click)   → mouse/button click
-(input)   → input value changes while typing
-(change)  → value change is committed
-(keyup)   → key released
-(keydown) → key pressed
-(submit)  → form submitted
-```
+## 8. Property binding vs event binding
 
-## Property vs event binding
+  Binding    Direction                Example
+  ---------- ------------------------ ---------------------------
+  Property   TypeScript → HTML        `[disabled]="isDisabled"`
+  Event      HTML/User → TypeScript   `(click)="addToCart()"`
 
-```text
-[property] → TypeScript → HTML
-(event)    → HTML/User → TypeScript
-```
+## Important rules
 
-## Common mistakes
-- Writing `method` when you intended to call `method()`.
-- Using `this.` in the HTML template.
-- Using `$event` when the method does not need event information.
-- Forgetting that the method must belong to the template's component.
+-   Parentheses mean event binding: `(event)="expression"`.
+-   The method must exist in the component's template context.
+-   `method()` calls the method; `method` refers to it without calling
+    it.
+-   Use `this.property` inside TypeScript methods to access component
+    properties.
+-   `$event` is available when event information is needed.
+-   Changing a property updates existing bindings; showing/hiding
+    elements conditionally is covered by template control flow later.
 
 ## Quick reference
 
-```html
-<button (click)="save()">Save</button>
-<input (input)="onInput($event)">
+``` ts
+count: number = 0;
+
+increment(): void {
+  this.count++;
+}
 ```
 
-## Memory rule
+``` html
+<button (click)="increment()">Add</button>
+<p>{{ count }}</p>
+```
 
-**`()` = user event → TypeScript method.**
+**Memory rule:** Parentheses `()` = user action → TypeScript method.

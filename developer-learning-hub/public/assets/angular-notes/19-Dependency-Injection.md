@@ -1,4 +1,4 @@
-# 19. Dependency Injection
+# Topic 19 — Angular Dependency Injection
 
 ## Subtopics
 - injector concept
@@ -9,49 +9,60 @@
 - service dependencies
 - testability
 
-## What it solves
+## What problem does Dependency Injection solve?
 
-A class often needs another class to do its job.
-
-Instead of manually creating that dependency, Angular can provide it.
-
-```text
-Component
-  ↓ asks Angular
-Injector
-  ↓ provides
-Service
-```
-
-## Where do we use this?
-
-Mostly in component/service `.ts` files and provider configuration.
-
-## What is a dependency?
-
-If:
+A class may need another class in order to do its job.
 
 ```text
 ProductListComponent
-needs
-ProductService
+→ needs ProductService
 ```
 
-then `ProductService` is a dependency of `ProductListComponent`.
+Without Dependency Injection, the component would create that dependency itself.
 
-## `inject()`
+Angular DI changes the responsibility:
+
+```text
+Component
+→ asks Angular
+→ Angular's injector provides the dependency
+```
+
+## 1. What is a dependency?
+
+A dependency is simply something another class needs.
+
+If `ProductListComponent` uses `ProductService`, then `ProductService` is a dependency of that component.
+
+## 2. Injector concept
+
+Angular has an injector that manages dependencies.
+
+```text
+Angular Injector
+      ↓
+knows how to provide
+      ↓
+ProductService
+      ↓
+ProductListComponent
+```
+
+The component does not need to know how the service was constructed.
+
+## 3. `inject()`
 
 ```ts
 import { inject } from '@angular/core';
 
-private productService =
-  inject(ProductService);
+productService = inject(ProductService);
 ```
 
-Read it as:
+Read this as:
 
 ```text
-Ask Angular's injector for ProductService.
+inject(ProductService)
+→ ask Angular's injector for ProductService
 ```
 
 Then:
@@ -62,61 +73,77 @@ this.productService.getProducts();
 
 uses the dependency.
 
-## Why not `new ProductService()`?
+## 4. Why not `new ProductService()`?
 
 ```ts
-new ProductService()
+productService = new ProductService();
 ```
 
-makes the component responsible for creating the dependency.
+makes the component responsible for constructing the dependency.
+
+With:
 
 ```ts
-inject(ProductService)
+productService = inject(ProductService);
 ```
 
-lets Angular control how it is provided.
+Angular controls how the dependency is provided.
 
-This becomes useful when dependencies have dependencies, scopes differ, or tests need replacements.
+This becomes important when services have their own dependencies or tests need replacements.
 
-## Constructor injection
+## 5. Constructor injection
 
-Another style is:
+Another Angular DI style is:
 
 ```ts
 constructor(
   private productService: ProductService
-) {}
+) {
+}
 ```
 
-Recognize both styles.
+Angular sees the required dependency and supplies it.
 
-For our current code, we commonly use `inject()`.
+Recognize both:
 
-## Providers
+```text
+inject(ProductService)
+→ field-based injection
 
-Angular must know how a dependency can be provided.
+constructor(private productService: ProductService)
+→ constructor injection
+```
+
+## 6. Providers
+
+Angular must know what it can provide.
+
+A provider registration can be:
 
 ```ts
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {}
+export class ProductService {
+}
 ```
 
-Think:
+Conceptually:
 
 ```text
 provider
 → registers availability
 
 injector
-→ resolves dependency
+→ resolves/provides dependency
 
 inject(...)
 → requests dependency
 ```
 
-## Root singleton behavior
+Providers can also be configured at other levels, such as a component or application configuration. That can change dependency scope.
+
+## 7. Root singleton behavior
 
 With:
 
@@ -127,62 +154,168 @@ providedIn: 'root'
 Angular normally reuses one root instance.
 
 ```text
-         ProductService
-          /          \
-Component A        Component B
+              Root Injector
+                   ↓
+            ProductService
+             /          \
+            /            \
+Component A            Component B
 ```
 
-That is why a root service can hold shared state.
+This is important for shared state because both consumers can see the same service-owned state.
 
-## Service dependencies
+## 8. Service dependencies
 
-A service can inject another service:
+A service can depend on another service.
 
 ```ts
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductService {
-  private logger = inject(LoggerService);
+  logger = inject(LoggerService);
 }
 ```
 
-Angular resolves the dependency chain.
+Flow:
 
-## Testability
+```text
+Component
+→ needs ProductService
+→ ProductService needs LoggerService
+→ Angular injector resolves both
+```
 
-With DI, a test can provide a fake/mock dependency instead of the real one.
+The component does not manually create the dependency chain.
 
-That is much easier than a component creating dependencies itself with `new`.
+## 9. Testability
 
-## Service vs DI
+If a component directly creates:
+
+```ts
+new ProductService();
+```
+
+it is tightly connected to that construction.
+
+With DI:
+
+```ts
+productService = inject(ProductService);
+```
+
+a test can provide another implementation.
+
+```text
+Real app
+→ real ProductService
+
+Test
+→ fake/mock ProductService
+```
+
+This is why DI improves testability.
+
+## 10. Service vs DI
 
 ```text
 Service
-→ WHAT functionality/data we need
+→ WHAT class/data/logic we need
 
 Dependency Injection
-→ HOW Angular gives that dependency to us
+→ HOW Angular gives it to us
 ```
 
-## Common mistakes
-- Confusing a service with DI.
-- Calling `new SomeService()` in components.
-- Assuming every provider is always a single global instance.
-- Thinking `inject()` creates the service itself.
+## Complete example using `inject()`
 
-## Quick reference
+### `product.service.ts`
 
 ```ts
-private productService =
-  inject(ProductService);
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  getProducts(): string[] {
+    return ['Laptop', 'Monitor'];
+  }
+}
 ```
 
-or:
+### `product-list.component.ts`
 
 ```ts
-constructor(
-  private productService: ProductService
-) {}
+import { Component, inject } from '@angular/core';
+import { ProductService } from './product.service';
+
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html'
+})
+export class ProductListComponent {
+  private productService = inject(ProductService);
+
+  products = this.productService.getProducts();
+}
 ```
 
-## Memory rule
+### `product-list.component.html`
 
-**Dependency = something a class needs. Injector = Angular provides it.**
+```html
+<h2>Products</h2>
+
+@for (product of products; track product) {
+  <p>{{ product }}</p>
+}
+```
+
+Complete DI flow:
+
+```text
+ProductService
+→ provided in root
+→ root injector knows it
+→ component calls inject(ProductService)
+→ Angular supplies service
+→ component uses service method
+```
+
+## Constructor-injection recognition example
+
+```ts
+export class ProductListComponent {
+  products: string[];
+
+  constructor(
+    private productService: ProductService
+  ) {
+    this.products = this.productService.getProducts();
+  }
+}
+```
+
+You only need to recognize both styles. You do not need to rewrite working code just to use both.
+
+## Topic 19 checklist
+
+- [x] injector concept
+- [x] `inject()`
+- [x] constructor injection
+- [x] providers
+- [x] root singleton behavior
+- [x] service dependencies
+- [x] testability
+
+## Retrieval checkpoint
+
+1. What is a dependency?
+2. What does the injector do?
+3. What does `inject(ProductService)` mean?
+4. Why is `inject()` different from `new`?
+5. What is constructor injection?
+6. What is a provider?
+7. What does root singleton behavior mean?
+8. Can a service depend on another service?
+9. Why does DI improve testing?
+10. What is the difference between a service and DI?

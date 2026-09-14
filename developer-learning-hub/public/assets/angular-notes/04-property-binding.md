@@ -10,124 +10,162 @@
 - `[style]` basics
 - static assets
 
-## What it solves
+## What problem does this solve?
 
-Interpolation displays text. Property binding lets TypeScript **control an HTML property**.
+Interpolation displays text. Property binding lets a component's
+TypeScript values control HTML element properties, such as an image
+source or whether a button is disabled.
 
-```text
-TypeScript → HTML property
-```
+**Direction:** TypeScript → HTML
 
-## Where do we use this?
+## 1. A real-world example
 
-| File | Job |
-|---|---|
-| Component `.ts` | Stores the value |
-| Component `.html` | Binds the value with `[]` |
-| Component `.css` | Styles used by class bindings |
-| `public/` | Static files such as images |
+Imagine a shopping page with a product image and a checkout button. The
+image URL comes from TypeScript, and checkout should be disabled when
+the cart is empty. Property binding connects those values to the HTML.
 
-## Basic syntax
+## 2. Basic syntax
 
-```html
+``` html
 [property]="expression"
 ```
 
-Square brackets tell Angular to evaluate the expression.
+Square brackets tell Angular to evaluate the expression and assign its
+result to the target property.
 
-## Image source
+## 3. Define properties in TypeScript
 
-```ts
-imageUrl = '/Angular.png';
+``` ts
+export class AppComponent {
+  productImage: string = '/images/shirt.png';
+  cartIsEmpty: boolean = true;
+}
 ```
 
-```html
-<img [src]="imageUrl" alt="Angular logo">
+## 4. Bind an image source
+
+``` html
+<img [src]="productImage" alt="A shirt">
 ```
 
-If an image is in `public/Angular.png`, the browser path is normally `/Angular.png`.
+Angular reads `productImage` and assigns its value to the image's `src`
+property. Static images can be placed in `public/`; for example,
+`public/images/shirt.png` is served as `/images/shirt.png` in a typical
+CLI project.
 
-## Boolean property
+## 5. Bind a disabled state
 
-```ts
-isDisabled = true;
+``` html
+<button [disabled]="cartIsEmpty">Checkout</button>
 ```
 
-```html
-<button [disabled]="isDisabled">Save</button>
+When `cartIsEmpty` is `true`, the button is disabled. When it is
+`false`, the button is enabled. The value is a boolean, not the text
+`"true"` or `"false"`.
+
+## 6. Static values vs binding
+
+``` html
+<img src="/images/shirt.png" alt="A shirt">
+<!-- Fixed image URL. -->
+
+<img [src]="productImage" alt="A shirt">
+<!-- URL comes from the component. -->
 ```
 
-Use a real boolean, not the string `"true"`.
+Use a static attribute for a fixed value and binding when Angular should
+evaluate a TypeScript expression.
 
-## Static value vs binding
+## 7. Class binding
 
-```html
-<img src="/Angular.png">
+A CSS class can be applied conditionally.
+
+``` ts
+isSelected: boolean = true;
 ```
 
-The value is fixed.
-
-```html
-<img [src]="imageUrl">
+``` html
+<p [class.selected]="isSelected">Selected item</p>
 ```
 
-The value comes from TypeScript.
-
-## Class binding
-
-```ts
-isActive = true;
-```
-
-```html
-<p [class.active]="isActive">Current item</p>
-```
-
-```css
-.active {
+``` css
+.selected {
   font-weight: bold;
 }
 ```
 
-## Style binding
+When `isSelected` is true, Angular applies the `selected` class.
 
-```ts
-fontSize = 20;
+You can also bind the complete class value:
+
+``` ts
+cardClasses: string = 'card highlighted';
 ```
 
-```html
+``` html
+<div [class]="cardClasses">Product</div>
+```
+
+`[class]` controls the element's class value; `[class.selected]`
+controls one named class.
+
+## 8. Style binding
+
+``` ts
+fontSize: number = 20;
+```
+
+``` html
 <p [style.font-size.px]="fontSize">Hello</p>
 ```
 
-## Property binding vs interpolation
+Angular applies `font-size: 20px`. The `.px` suffix supplies the unit.
 
-```html
-<p>{{ imageUrl }}</p>
+A string containing a unit is also valid:
+
+``` ts
+textColor: string = 'darkblue';
 ```
 
-Displays the URL as text.
-
-```html
-<img [src]="imageUrl">
-```
-
-Uses the URL as the image source.
-
-## Common mistakes
-- Forgetting the square brackets.
-- Passing `"false"` to a boolean property.
-- Using interpolation when the goal is to control an element property.
-- Forgetting that `public/` assets are served from the app root.
-
-## Quick reference
-
-```html
-<img [src]="imageUrl">
-<button [disabled]="isDisabled">Save</button>
-<p [class.active]="isActive">Item</p>
+``` html
 <p [style.color]="textColor">Hello</p>
 ```
 
-## Memory rule
+## 9. Property binding vs interpolation
 
-**`[]` = TypeScript value → HTML property.**
+``` html
+<p>{{ productImage }}</p>
+<!-- Displays the URL as text. -->
+
+<img [src]="productImage" alt="A shirt">
+<!-- Uses the URL as the image source. -->
+```
+
+Interpolation is for displaying text; property binding controls an
+element property. Both read values from TypeScript.
+
+## Important rules
+
+-   Square brackets mean property binding: `[property]="expression"`.
+-   The expression is evaluated in the component's template context.
+-   Use boolean values for boolean properties such as `disabled`.
+-   `[class.name]` controls one CSS class; `[class]` can control the
+    complete class value.
+-   `[style.property]` controls a style; a unit suffix such as `.px` can
+    be used.
+-   Property binding does not handle user actions. Event binding is the
+    next topic.
+
+## Quick reference
+
+  Syntax                          Purpose
+  ------------------------------- -----------------------
+  `[src]="imageUrl"`              Image source
+  `[disabled]="isDisabled"`       Button state
+  `[class.active]="isActive"`     Conditional CSS class
+  `[class]="classNames"`          Complete class value
+  `[style.font-size.px]="size"`   Font size in pixels
+  `[style.color]="color"`         Text color
+
+**Memory rule:** Square brackets `[]` = TypeScript value → HTML
+property.

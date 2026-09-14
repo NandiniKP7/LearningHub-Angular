@@ -8,99 +8,156 @@
 - user edits update component state
 - property vs event vs two-way binding
 
-## What it solves
+## What problem does this solve?
 
-Sometimes an input should display a TypeScript value **and** update that value when the user types.
+Sometimes an HTML input should display a TypeScript value and also
+update that value when the user types. Two-way binding keeps both sides
+synchronized.
 
-```text
-TypeScript ⇄ HTML input
+**Direction:** TypeScript ⇄ HTML
+
+## 1. A real-world example
+
+Imagine a profile form with a display-name field. The input starts with
+the saved name. When the user edits it, the component property and a
+live preview should update automatically.
+
+## 2. First understand the two directions
+
+Property binding sends a value to HTML:
+
+``` html
+<input [value]="displayName">
 ```
 
-## Where do we use this?
+Event binding can read changes from HTML:
 
-| File | Job |
-|---|---|
-| Component `.ts` | Stores the value |
-| Component `.html` | Uses `[(ngModel)]` |
-| Component `.ts` imports | Adds `FormsModule` |
+``` html
+<input (input)="onNameInput($event)">
+```
 
-## Import `FormsModule`
+Two-way binding combines the idea of reading and updating a value.
+Angular's `ngModel` provides a convenient way to do this for form
+controls.
 
-```ts
+## 3. Import FormsModule
+
+`ngModel` is provided by Angular's forms package. A standalone component
+must make `FormsModule` available to its template.
+
+``` ts
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  imports: [FormsModule],
+  templateUrl: './app.component.html'
+})
+export class AppComponent {
+  displayName: string = 'Ada';
+}
+```
+
+The TypeScript import brings `FormsModule` into the file. The
+decorator's `imports` array makes its directives available to the
+template.
+
+## 4. Use \[(ngModel)\]
+
+``` html
+<label for="display-name">Display name</label>
+<input id="display-name" [(ngModel)]="displayName">
+
+<p>Preview: {{ displayName }}</p>
+```
+
+Initially, the input contains `Ada` and the preview displays `Ada`. If
+the user types `Grace`, the component's `displayName` becomes `Grace`,
+and the preview updates.
+
+``` text
+TypeScript displayName = 'Ada'
+          ↓
+Input displays Ada
+          ↓
+User types Grace
+          ↓
+ngModel updates displayName
+          ↓
+Interpolation displays Grace
+```
+
+## 5. Why the syntax looks like \[()\]
+
+``` html
+[(ngModel)]="displayName"
+```
+
+The square brackets represent the value flowing into the control, and
+the parentheses represent changes flowing back. This is often called
+"banana in a box."
+
+Conceptually, it is similar to:
+
+``` html
+<input
+  [ngModel]="displayName"
+  (ngModelChange)="displayName = $event">
+```
+
+`ngModelChange` emits the updated model value. The combined syntax is
+the convenient shorthand.
+
+## 6. Two-way binding vs interpolation
+
+``` html
+<p>{{ displayName }}</p>
+```
+
+Interpolation only displays the value. It does not let the user edit it.
+
+``` html
+<input [(ngModel)]="displayName">
+```
+
+Two-way binding connects an editable control to the property. The same
+property can then be displayed elsewhere with interpolation.
+
+## 7. Important rules and common mistakes
+
+-   Import `FormsModule` and add it to the standalone component's
+    `imports`.
+-   Use `[(ngModel)]="property"` for two-way binding with supported form
+    controls.
+-   The property must exist in the component class.
+-   Do not put interpolation inside the binding:
+    `[(ngModel)]="{{ displayName }}"` is incorrect.
+-   `[(ngModel)]` is not the only form approach. Template-driven and
+    reactive forms are covered in later topics.
+-   When using `ngModel` inside a form, Angular's form registration
+    rules may require a `name` attribute or standalone model
+    configuration. Forms fundamentals will explain this in detail.
+-   Two-way binding does not mean every Angular property automatically
+    synchronizes in both directions.
+
+## Quick reference
+
+``` ts
 import { FormsModule } from '@angular/forms';
 
 @Component({
   imports: [FormsModule]
 })
-export class ProfileComponent {
-  displayName = 'Ada';
+export class AppComponent {
+  displayName: string = 'Ada';
 }
 ```
 
-## Use `[(ngModel)]`
-
-```html
+``` html
 <input [(ngModel)]="displayName">
-
-<p>Preview: {{ displayName }}</p>
+<p>{{ displayName }}</p>
 ```
 
-Initially:
-
-```text
-displayName = "Ada"
-      ↓
-input shows Ada
-```
-
-When the user types `Grace`:
-
-```text
-input changes
-      ↓
-ngModel updates displayName
-      ↓
-preview shows Grace
-```
-
-## Why `[()]`?
-
-Think of it as the two directions together:
-
-```text
-[]  → value goes to HTML
-()  → changes come back
-[()] → both directions
-```
-
-Angular's `ngModel` combines those directions for form controls.
-
-## Binding comparison
-
-| Binding | Direction | Example |
-|---|---|---|
-| Interpolation | TS → text | `{{ name }}` |
-| Property | TS → property | `[value]="name"` |
-| Event | HTML → TS | `(input)="..."` |
-| Two-way | TS ⇄ HTML | `[(ngModel)]="name"` |
-
-## Common mistakes
-- Forgetting `FormsModule`.
-- Writing `[(ngModel)]="{{ name }}"`.
-- Using a property that does not exist.
-- Assuming every property automatically becomes two-way bound.
-
-## Quick reference
-
-```ts
-name = 'Ada';
-```
-
-```html
-<input [(ngModel)]="name">
-<p>{{ name }}</p>
-```
-
-## Memory rule
-
-**`[()]` = value goes to the input and user changes come back to TypeScript.**
+**Memory rule:** `[()]` = value goes to the input and changes come back
+to TypeScript.

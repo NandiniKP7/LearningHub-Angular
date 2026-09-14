@@ -1,4 +1,4 @@
-# 18. Angular Services
+# Topic 18 — Angular Services
 
 ## Subtopics
 - service purpose
@@ -9,32 +9,23 @@
 - component vs service responsibility
 - multiple consumers
 
-## What it solves
+## What problem does a service solve?
 
-Components should mainly handle UI and user interaction.
-
-Reusable data or logic can live in a **service**.
+A component should mainly handle UI and user interaction. As an app grows, reusable data or logic should often live somewhere separate from the component.
 
 ```text
 Component
 → UI / interaction
 
 Service
-→ reusable data / logic
+→ reusable data
+→ reusable logic
 → shared state when appropriate
 ```
 
-## Where do we use this?
+A service is a TypeScript class used for those non-UI responsibilities.
 
-Services live in `.ts` files such as:
-
-```text
-product.service.ts
-```
-
-Components inject the service when they need it.
-
-## Basic service
+## 1. Basic structure
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -43,56 +34,74 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProductService {
-
-  getProducts(): string[] {
-    return [
-      'Laptop',
-      'Monitor',
-      'Keyboard'
-    ];
-  }
 }
 ```
 
 ### `@Injectable()`
 
-Tells Angular the class can participate in dependency injection.
+```text
+@Injectable()
+→ tells Angular this class can participate in dependency injection
+```
+
+We will study Dependency Injection in Topic 19.
 
 ### `providedIn: 'root'`
 
-Registers the service with the root injector.
+```text
+providedIn: 'root'
+→ registers the service with Angular's root injector
+→ service is available application-wide
+→ Angular normally reuses one root instance
+```
 
-It is then available application-wide, and Angular normally reuses one root instance.
+## 2. Service methods
 
-## Use the service in a component
+A service can expose methods that components call.
+
+```ts
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  getProducts(): string[] {
+    return ['Laptop', 'Monitor', 'Keyboard'];
+  }
+}
+```
+
+The component asks the service for data instead of owning the data source itself.
+
+## 3. Using a service from a component
 
 ```ts
 import { Component, inject } from '@angular/core';
 import { ProductService } from './product.service';
 
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html'
+})
 export class ProductListComponent {
+  productService = inject(ProductService);
 
-  private productService =
-    inject(ProductService);
-
-  products =
-    this.productService.getProducts();
+  products = this.productService.getProducts();
 }
 ```
 
-Think:
+Important:
 
 ```text
 inject(ProductService)
-→ get service
+→ gets the service
 
-productService.getProducts()
-→ call service method
+this.productService.getProducts()
+→ calls a method on the service
 ```
 
-## Service state
+## 4. Service state
 
-A service can also own state.
+A service can store values as well as methods.
 
 ```ts
 @Injectable({
@@ -103,39 +112,47 @@ export class CartService {
 }
 ```
 
-Shared reactive state with signals is covered in Topic 20.
+So a service can own state.
 
-## Component vs service responsibility
+Because a root-provided service can be used by several components, that state can become shared state. Topic 20 covers the better reactive pattern with signals.
 
-Keep in the component:
+## 5. Component vs service responsibility
+
+Usually keep code in a component when it is mainly about that component's UI:
 
 ```text
-button handling
+button click handling
 show/hide UI
-local expansion state
-template-specific behavior
+template behavior
+local search text
 ```
 
 Consider a service for:
 
 ```text
 reusable data
-shared state
 API communication
-business logic used by several components
+shared business logic
+shared application state
+logic used by several components
 ```
 
-## Multiple consumers
+Do not move every method into a service.
+
+## 6. Multiple consumers
+
+Two components can request the same root-provided service.
 
 ```text
-ProductList ──┐
-              ├→ ProductService
-Cart ─────────┘
+              ProductService
+              /            \
+             /              \
+ProductListComponent     CartComponent
 ```
 
-With a root service, both can use the same service instance.
+With `providedIn: 'root'`, both normally receive the same root service instance.
 
-## Service is not an API
+## 7. Service is not an API
 
 ```text
 Service
@@ -145,28 +162,87 @@ API
 → external endpoint/system
 ```
 
-A service may call an API later, but the service itself is not the API.
+A service may later call an API:
 
-## Common mistakes
-- Moving every method into a service.
-- Creating services only because “Angular uses services.”
-- Confusing a service with an external API.
-- Manually creating services with `new` instead of using DI.
+```text
+Component
+→ Service
+→ HttpClient
+→ REST API
+```
 
-## Quick reference
+but the service itself is not the API.
+
+## Complete example
+
+### `product.service.ts`
 
 ```ts
+import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root'
 })
-export class ExampleService {}
+export class ProductService {
+  private products = ['Laptop', 'Monitor', 'Keyboard'];
+
+  getProducts(): string[] {
+    return this.products;
+  }
+
+  getProductCount(): number {
+    return this.products.length;
+  }
+}
 ```
+
+### `product-list.component.ts`
 
 ```ts
-private exampleService =
-  inject(ExampleService);
+import { Component, inject } from '@angular/core';
+import { ProductService } from './product.service';
+
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html'
+})
+export class ProductListComponent {
+  productService = inject(ProductService);
+
+  products = this.productService.getProducts();
+  productCount = this.productService.getProductCount();
+}
 ```
 
-## Memory rule
+### `product-list.component.html`
 
-**Component = UI. Service = reusable data/logic/shared state when needed.**
+```html
+<h2>Products</h2>
+
+<p>Total products: {{ productCount }}</p>
+
+@for (product of products; track product) {
+  <p>{{ product }}</p>
+}
+```
+
+## Topic 18 checklist
+
+- [x] service purpose
+- [x] `@Injectable`
+- [x] `providedIn: 'root'`
+- [x] service methods
+- [x] service state
+- [x] component vs service responsibility
+- [x] multiple consumers
+
+## Retrieval checkpoint
+
+1. What problem does a service solve?
+2. What does `@Injectable()` mean?
+3. What does `providedIn: 'root'` mean?
+4. What is the difference between getting a service and calling its method?
+5. Can a service own state?
+6. What stays in a component?
+7. What belongs in a service?
+8. Why can several components use the same root service?

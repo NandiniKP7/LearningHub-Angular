@@ -1,4 +1,4 @@
-# 2. String Interpolation
+# 3. String Interpolation
 
 ## Subtopics
 - component properties
@@ -7,130 +7,144 @@
 - case sensitivity
 - simple template expressions
 
-## What it solves
+## What problem does this solve?
 
-A component stores data in TypeScript. String interpolation lets the HTML **display that data**.
+A component's TypeScript class stores data, while its HTML template
+displays the UI. String interpolation lets us display TypeScript values
+in HTML without manually changing the DOM.
 
-```text
-TypeScript value → HTML text
-```
+## 1. Define variables in the component TypeScript
 
-## Where do we use this?
+A component class can contain properties (variables that belong to the
+component). We give them names, types, and values.
 
-| File | What goes there? |
-|---|---|
-| Component `.ts` | Property/value |
-| Component `.html` | `{{ property }}` |
-
-## Basic syntax
-
-### Component TypeScript
-
-```ts
-export class ProfileComponent {
-  name = 'Ada';
-  age = 25;
+``` ts
+export class AppComponent {
+  title: string = 'My Website';
+  age: number = 25;
+  isActive: boolean = true;
 }
 ```
 
-### Component HTML
+-   `title` is a string property containing text.
+-   `age` is a number property.
+-   `isActive` is a boolean property.
+-   `:` specifies the TypeScript type; `=` assigns the value.
+-   TypeScript can often infer the type, so `title = 'My Website'` is
+    also valid.
 
-```html
-<h2>{{ name }}</h2>
+These properties belong to the component class. Its template can read
+them.
+
+## 2. Display a variable in HTML
+
+Use double curly braces around the property name.
+
+``` html
+<h1>{{ title }}</h1>
 <p>Age: {{ age }}</p>
+<p>Active: {{ isActive }}</p>
 ```
 
-Browser:
+The browser displays:
 
-```text
-Ada
+``` text
+My Website
 Age: 25
+Active: true
 ```
 
-## Literal text vs property
+The HTML above belongs to the component class in the previous example.
 
-```html
-<p>name</p>
-```
+## 3. How the two files connect
 
-Displays the word:
-
-```text
-name
-```
-
-But:
-
-```html
-<p>{{ name }}</p>
-```
-
-displays the value stored in the `name` property.
-
-## Case sensitivity
-
-If TypeScript contains:
-
-```ts
-firstName = 'Ada';
-```
-
-use:
-
-```html
-{{ firstName }}
-```
-
-Not:
-
-```html
-{{ FirstName }}
-```
-
-## Simple expressions
-
-```ts
-firstName = 'Ada';
-lastName = 'Lovelace';
-count = 4;
-```
-
-```html
-<p>{{ firstName + ' ' + lastName }}</p>
-<p>{{ count + 1 }}</p>
-```
-
-Keep complicated logic in TypeScript instead of putting large expressions in HTML.
-
-## Complete flow
-
-```text
-component.ts
-name = 'Ada'
-    ↓
-component.html
-{{ name }}
-    ↓
+``` text
+app.component.ts
+  title: string = 'My Website';
+        ↓
+app.component.html
+  <h1>{{ title }}</h1>
+        ↓
 Browser
-Ada
+  My Website
 ```
 
-## Common mistakes
-- Forgetting `{{ }}`.
-- Using the wrong property name or capitalization.
-- Putting heavy calculations in the template.
-- Using interpolation when you actually need to control an HTML property such as `disabled` or `src`.
+Angular connects the template to its component through the `@Component`
+configuration learned in Topic 2. The template reads the property from
+that component's class.
+
+## 4. Literal text vs a variable
+
+``` html
+<p>title</p>
+<!-- Displays the word title. -->
+
+<p>{{ title }}</p>
+<!-- Displays the value stored in the title property. -->
+```
+
+## 5. Case sensitivity
+
+If TypeScript defines `firstName`, HTML must use `{{ firstName }}`.
+`{{ FirstName }}` is a different identifier and will cause an error if
+that property does not exist.
+
+## 6. Simple expressions
+
+Interpolation can evaluate simple expressions using component
+properties.
+
+``` ts
+firstName: string = 'Ada';
+lastName: string = 'Lovelace';
+count: number = 4;
+```
+
+``` html
+<p>{{ firstName + ' ' + lastName }}</p>
+<!-- Ada Lovelace -->
+
+<p>{{ count + 1 }}</p>
+<!-- 5 -->
+```
+
+Keep complicated calculations and business logic in TypeScript.
+
+## 7. When a value changes
+
+When application state changes, Angular updates the template to reflect
+the new value. You do not need to manually find the HTML element and
+replace its text.
+
+``` text
+TypeScript property changes
+        ↓
+Angular updates the template
+        ↓
+Browser displays the new value
+```
+
+## Important rules
+
+-   Interpolation uses `{{ expression }}`.
+-   The property must exist in the template's component context.
+-   Property names are case-sensitive.
+-   Use interpolation for displaying text and simple expression results.
+-   Use property binding for DOM properties such as `src` or `disabled`;
+    this is Topic 4.
+-   Signals are read by calling them, such as `{{ count() }}`. Signals
+    are covered later.
 
 ## Quick reference
 
-```ts
-message = 'Hello';
+``` ts
+message: string = 'Hello';
 ```
 
-```html
+``` html
 <p>{{ message }}</p>
+<!-- Displays Hello -->
 ```
 
-## Memory rule
-
-**`{{ }}` = read a TypeScript value and display it as text in HTML.**
+**Memory rule:** Define a property in TypeScript → read it with `{{ }}`
+in HTML → Angular displays its value.
